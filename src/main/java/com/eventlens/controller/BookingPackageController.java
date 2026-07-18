@@ -1,7 +1,7 @@
 package com.eventlens.controller;
-import com.eventlens.entity.Package;
+import com.eventlens.entity.BookingPackage;
 
-import com.eventlens.service.PackageService;
+import com.eventlens.service.BookingPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,30 +9,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/packages")
-public class PackageController {
+public class BookingPackageController {
 
     @Autowired
-    private PackageService packageService;
+    private BookingPackageService packageService;
 
     @PostMapping
-    public Package createPackage(@RequestBody Package pkg) {
+    public BookingPackage createPackage(@RequestBody BookingPackage pkg) {
         return packageService.createPackage(pkg);
     }
 
     @GetMapping
-    public List<Package> getAllPackages() {
+    public List<BookingPackage> getAllPackages() {
         return packageService.getAllPackages();
     }
 
     @GetMapping("/{id}")
-    public Package getById(@PathVariable Long id){
+    public BookingPackage getById(@PathVariable Long id){
         return packageService.getById(id);
     }
 
     @PutMapping("/{id}")
-    public Package update(@PathVariable Long id, @RequestBody Package p){
+    public BookingPackage update(@PathVariable Long id, @RequestBody BookingPackage p){
 
-        Package existing = packageService.getById(id);
+        BookingPackage existing = packageService.getById(id);
 
         if(existing != null){
             existing.setName(p.getName());

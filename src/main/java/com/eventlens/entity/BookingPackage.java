@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "packages")
-public class Package {
+public class BookingPackage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +14,9 @@ public class Package {
     private Integer hours;
     private String description;
 
-    public Package() {}
+    public BookingPackage() {}
 
-    public Package(String name, Double price, Integer hours, String description) {
+    public BookingPackage(String name, Double price, Integer hours, String description) {
         this.name = name;
         this.price = price;
         this.hours = hours;

@@ -1,36 +1,36 @@
 package com.eventlens.service.impl;
 
-import com.eventlens.entity.Package;
-import com.eventlens.repository.PackageRepository;
-import com.eventlens.service.PackageService;
+import com.eventlens.entity.BookingPackage;
+import com.eventlens.repository.BookingPackageRepository;
+import com.eventlens.service.BookingPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PackageServiceImpl implements PackageService {
+public class BookingPackageServiceImpl implements BookingPackageService {
 
     @Autowired
-    private PackageRepository repo;
+    private BookingPackageRepository repo;
 
     @Override
-    public Package createPackage(Package pkg) {
+    public BookingPackage createPackage(BookingPackage pkg) {
         return repo.save(pkg);
     }
 
     @Override
-    public List<Package> getAllPackages() {
+    public List<BookingPackage> getAllPackages() {
         return repo.findAll();
     }
 
     @Override
-    public Package getById(Long id){
+    public BookingPackage getById(Long id){
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public Package save(Package p){
+    public BookingPackage save(BookingPackage p){
         return repo.save(p);
     }
 
