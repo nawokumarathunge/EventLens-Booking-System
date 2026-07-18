@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard | EventLens</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body class="dashboard-bg">
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="../index.html">
+            <i class="fa-solid fa-camera text-warning me-2"></i>EventLens
+        </a>
+
+        <div class="ms-auto">
+
+            <a href="../index.html" class="btn btn-outline-light me-2">Home</a>
+
+            <a href="../providers.html" class="btn btn-outline-warning me-2">
+                Find Providers
+            </a>
+
+            <a href="login.html" class="btn btn-danger">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- ================= WELCOME ================= -->
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 p-4">
+
+        <h2>
+            Welcome,
+            <span class="text-warning" id="userName"></span>
+        </h2>
+
+        <p class="text-muted">
+            Manage your bookings, profile and notifications from one place.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ================= DASHBOARD CARDS ================= -->
+
+<div class="container mt-4">
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card dashboard-card text-center p-4">
+
+                <i class="fa-solid fa-user fa-3x text-primary mb-3"></i>
+
+                <h5>My Profile</h5>
+
+                <p>Edit your personal information.</p>
+
+                <a href="customer_profile.html" class="btn btn-primary">
+                 View
+                 </a>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card dashboard-card text-center p-4">
+
+                <i class="fa-solid fa-calendar-check fa-3x text-success mb-3"></i>
+
+                <h5>My Bookings</h5>
+
+                <p>Track your event bookings.</p>
+
+                <a href="#" class="btn btn-success" onclick="showBookings()">
+               Open
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card dashboard-card text-center p-4">
+
+                <i class="fa-solid fa-bell fa-3x text-warning mb-3"></i>
+
+                <h5>Notifications</h5>
+
+                <p>View booking updates.</p>
+
+                <a href="#" class="btn btn-warning" onclick="showNotifications()">
+               View
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card dashboard-card text-center p-4">
+
+                <i class="fa-solid fa-star fa-3x text-danger mb-3"></i>
+
+                <h5>Reviews</h5>
+
+                <p>Rate photographers.</p>
+
+                <a href="review.html" class="btn btn-danger">
+                Open
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= RECENT BOOKINGS ================= -->
+
+<div class="container mt-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-warning">
+
+            <h4 class="mb-0">
+                Recent Bookings
+            </h4>
+
+        </div>
+
+        <!-- ================= ALL BOOKINGS ================= -->
+
+<div class="container mt-5" id="bookingsSection" style="display:none;">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-success text-white">
+
+            <h4>My Bookings</h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Provider</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>#1001</td>
+                    <td>John Photography</td>
+                    <td>Wedding</td>
+                    <td>25 Aug 2026</td>
+                    <td><span class="badge bg-warning">Pending</span></td>
+                </tr>
+
+                <tr>
+                    <td>#1002</td>
+                    <td>Elite Studio</td>
+                    <td>Birthday</td>
+                    <td>18 Sep 2026</td>
+                    <td><span class="badge bg-success">Approved</span></td>
+                </tr>
+
+                <tr>
+                    <td>#1003</td>
+                    <td>Memory Makers</td>
+                    <td>Graduation</td>
+                    <td>10 Oct 2026</td>
+                    <td><span class="badge bg-secondary">Completed</span></td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="container mt-5" id="notificationsSection" style="display:none;">
+
+<div class="card shadow border-0">
+
+<div class="card-header bg-warning">
+
+<h4>Notifications</h4>
+
+</div>
+
+<div class="card-body">
+
+<ul class="list-group">
+
+<li class="list-group-item">
+✅ John Photography accepted your booking.
+</li>
+
+<li class="list-group-item">
+📅 Reminder: Your wedding event is tomorrow.
+</li>
+
+<li class="list-group-item">
+⭐ Your last booking is completed. Please leave a review.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container mt-5" id="reviewsSection" style="display:none;">
+
+<div class="card shadow border-0">
+
+<div class="card-header bg-danger text-white">
+
+<h4>Reviews</h4>
+
+</div>
+
+<div class="card-body text-center">
+
+<p>You haven't submitted any reviews yet.</p>
+
+<a href="review.html" class="btn btn-danger">
+Leave a Review
+</a>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white text-center mt-5 p-3">
+
+    © 2026 EventLens | Customer Dashboard
+
+</footer>
+
+</body>
+
+<script>
+
+function showBookings(){
+
+    document.getElementById("bookingsSection").style.display="block";
+
+    document.getElementById("notificationsSection").style.display="none";
+
+    document.getElementById("reviewsSection").style.display="none";
+
+    document.getElementById("bookingsSection").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+function showNotifications(){
+
+    document.getElementById("notificationsSection").style.display="block";
+
+    document.getElementById("bookingsSection").style.display="none";
+
+    document.getElementById("reviewsSection").style.display="none";
+
+    document.getElementById("notificationsSection").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+function showReviews() {
+
+    document.getElementById("reviewsSection").style.display = "block";
+
+    document.getElementById("bookingsSection").style.display = "none";
+
+    document.getElementById("notificationsSection").style.display = "none";
+
+    document.getElementById("reviewsSection").scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+    let user = JSON.parse(
+        localStorage.getItem("user")
+    );
+
+
+    if(user){
+
+        document.getElementById("userName").innerHTML = user.name;
+
+    }
+    else{
+
+        window.location.href="login.html";
+
+    }
+
+</script>
+</html>

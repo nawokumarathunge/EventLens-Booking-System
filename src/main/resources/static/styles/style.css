@@ -1,0 +1,1469 @@
+/* ================= GENERAL ================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* SLIDES */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    z-index: 0;
+}
+
+/* ACTIVE SLIDE */
+.slide.active {
+    opacity: 1;
+}
+
+/* DARK OVERLAY */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    z-index: 1;
+}
+
+/* HERO TEXT */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* TEXT STYLES */
+.italic-white {
+    font-style: italic;
+    color: white;
+    font-weight: 400;
+}
+
+.bold-white {
+    font-weight: 800;
+    color: white;
+}
+
+.bold-pink {
+    font-weight: 800;
+    color: #ff4da6;
+}
+
+/* ================= SERVICE CARDS ================= */
+
+.service-card {
+    transition: 0.3s;
+    border: none;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+/* ================= PROVIDER CARDS ================= */
+
+.provider-card {
+    transition: 0.3s;
+}
+
+.provider-card:hover {
+    transform: scale(1.05);
+}
+
+/* ================= BUTTON ================= */
+
+.btn-warning {
+    font-weight: bold;
+}
+
+
+/* LOGIN BACKGROUND */
+.login-body {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url('https://images.unsplash.com/photo-1529634895976-e0c8f7d0f1e3') center/cover;
+    height: 100vh;
+}
+
+/* LOGIN CARD */
+.login-card {
+    width: 400px;
+    border: none;
+    border-radius: 12px;
+}
+.brand-text {
+    letter-spacing: 1px;
+    color: white;
+}
+
+
+/*  register form  */
+.register-body {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url('https://images.unsplash.com/photo-1529634895976-e0c8f7d0f1e3') center/cover;
+    min-height: 100vh;
+}
+
+.register-card {
+    max-width: 600px;
+    margin: auto;
+    border-radius: 12px;
+    border: none;
+}
+/* navbar*/
+.navbar-brand {
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 19px;
+    margin-right: 10px;
+}
+
+.navbar .btn {
+    font-size: 16px;
+    padding: 6px 19px;
+}
+
+
+/* MAIN TITLE */
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+/* BIG WORDS (Special / Moments) */
+.big-text {
+    font-size: 4.5rem;
+    letter-spacing: 2px;
+}
+
+/* SUB TEXT */
+.hero-subtext {
+    font-size: 1.3rem;
+    color: #e0e0e0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* OPTIONAL: glow effect */
+.bold-pink {
+    color: #ff4da6;
+    text-shadow: 0 0 10px rgba(255, 77, 166, 0.5);
+}
+
+.bold-white {
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.hero-content .btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 30px;
+}
+
+.capture-text {
+    font-style: italic;
+    font-weight: 180;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.85);
+}
+
+.hero-title {
+    line-height: 1.1;
+}
+
+.service-card {
+    background-color: #e6f0ff;  /* light blue */
+}
+
+.how-card {
+    background-color: #f8f9fa;   /* same as service card */
+    color: rgb(21, 20, 20);
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    border-radius: 20px;
+}
+
+
+.register-link {
+    color: #b8860b;  /* dark golden color */
+    text-decoration: none;
+}
+
+.register-link:hover {
+    color: #8b6508;  /* even darker on hover */
+    text-decoration: underline;
+}
+
+
+/*dashboard*/
+.dashboard-body {
+    background-color: #f4f6f9;
+}
+
+/* PROFILE CARD */
+.profile-card {
+    border: none;
+    border-radius: 12px;
+}
+
+/* DASHBOARD CARDS */
+.card {
+    border-radius: 12px;
+}
+
+/* TABLE STYLE */
+table {
+    background: white;
+}
+
+
+
+
+/*providers.html*/
+/* PAGE BACKGROUND */
+body {
+    background-color: #f4f6f9;
+}
+
+/* PROVIDER CARD */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* CARD IMAGE */
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* BUTTON */
+.btn-primary {
+    background-color: #055eac;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #918f07;
+}
+
+
+
+/*provider-profile*/
+/* PROFILE CARD */
+.card {
+    border-radius: 15px;
+}
+
+/* PROFILE TITLE */
+h2 {
+    font-weight: bold;
+    color: #222;
+}
+
+/* TEXT STYLE */
+p {
+    color: #555;
+}
+
+/* PORTFOLIO IMAGES */
+img {
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* IMAGE HOVER EFFECT */
+img:hover {
+    transform: scale(1.05);
+}
+
+/* BOOK BUTTON */
+.btn-warning {
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+.card {
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+.provider-img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 20px auto 0;
+    display: block;
+    border: 3px solid #ffc107;
+}
+
+/* customer_dashboard*/
+
+/* Dashboard Background */
+
+.dashboard-bg{
+
+    background:#f4f6f9;
+
+}
+
+/* Dashboard Cards */
+
+.dashboard-card{
+
+    border:none;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.15);
+
+}
+
+/* Table */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+/* Footer */
+
+footer{
+
+    margin-top:80px;
+
+}
+
+
+
+
+/* ================= BOOKING PAGE ================= */
+
+body {
+    background: #f4f6f9;
+}
+
+/* Center booking card nicely */
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+/* Booking title */
+h3 {
+    font-weight: 700;
+    color: #222;
+}
+
+/* Input fields */
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+/* Focus effect */
+.form-control:focus,
+.form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+}
+
+/* Labels */
+.form-label {
+    font-weight: 600;
+    color: #444;
+}
+
+/* Button styling */
+.btn-warning {
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* Button hover effect */
+.btn-warning:hover {
+    background: #e0a800;
+    transform: scale(1.02);
+}
+
+/* Card shadow improvement */
+.shadow {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* Navbar spacing fix */
+.navbar {
+    padding: 12px 0;
+}
+
+/* Small animation for card */
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*review page*/
+/*================ REVIEW PAGE ================*/
+
+.review-body{
+    background:#f5f6fa;
+}
+
+.review-card{
+    border:none;
+    border-radius:15px;
+}
+
+.star-rating{
+
+    font-size:42px;
+
+}
+
+.star{
+
+    cursor:pointer;
+
+    color:#cfcfcf;
+
+    margin:0 6px;
+
+    transition:.3s;
+
+}
+
+.star:hover{
+
+    transform:scale(1.2);
+
+}
+
+.star.active{
+
+    color:#ffc107;
+
+}
+
+textarea{
+
+    resize:none;
+
+}
+
+.review-card button{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+/*customer_profile*/
+
+/*================ CUSTOMER PROFILE =================*/
+
+.customer-profile-img{
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:6px solid #ffc107;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+form label{
+
+    font-weight:600;
+
+}
+
+form input,
+form select{
+
+    border-radius:10px;
+
+}
+
+.card{
+
+    border-radius:18px;
+
+}
+
+
+
+
+/*new */
+/* ===========================================
+   NEW HOMEPAGE SECTIONS
+   Statistics, Packages, Testimonials,
+   Gallery, Footer Enhancement
+=========================================== */
+
+
+/* ================= STATISTICS ================= */
+
+
+.statistics-section{
+
+    background:#f8f9fa;
+
+}
+
+
+.statistics-box{
+
+    padding:30px 20px;
+
+    transition:0.3s ease;
+
+}
+
+
+.statistics-box:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+.statistics-box i{
+
+    color:#ffc107;
+
+    transition:0.3s;
+
+}
+
+
+.statistics-box:hover i{
+
+    transform:scale(1.2);
+
+}
+
+
+.statistics-box h2{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin-top:15px;
+
+}
+
+
+.statistics-box p{
+
+    color:#555;
+
+    font-size:17px;
+
+}
+
+
+
+
+/* ================= BROWSE EVENT SECTION ================= */
+
+
+.event-section{
+
+    background:#111;
+
+}
+
+
+.event-section h2{
+
+    color:white;
+
+}
+
+
+.event-section>div>p{
+
+    color:#cccccc !important;
+
+}
+
+
+
+.event-card{
+
+    background:#2f2f2f;
+
+    border-radius:20px;
+
+    padding:30px 15px;
+
+    height:100%;
+
+    transition:0.4s;
+
+}
+
+
+
+.event-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 15px 35px rgba(255,193,7,0.25);
+
+}
+
+
+
+.event-card i{
+
+    color:#ffc107;
+
+    font-size:45px;
+
+}
+
+
+
+.event-card h6{
+
+    color:white;
+
+    margin-top:20px;
+
+    font-size:17px;
+
+}
+
+
+
+
+
+/* ================= POPULAR PACKAGES ================= */
+
+
+.package-section{
+
+    background:white;
+
+}
+
+
+.package-card{
+
+    border-radius:25px;
+
+    transition:0.4s;
+
+    overflow:hidden;
+
+}
+
+
+
+.package-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+
+}
+
+
+
+.package-card .card-body{
+
+    padding:45px 30px;
+
+}
+
+
+
+.package-card h3{
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+
+
+.package-card h2{
+
+    color:#ffc107;
+
+    font-size:38px;
+
+}
+
+
+
+.package-card p{
+
+    color:#666;
+
+    font-size:16px;
+
+}
+
+
+
+.package-card .btn{
+
+    border-radius:30px;
+
+    padding:12px 30px;
+
+}
+
+
+
+.popular-package{
+
+    border:3px solid #ffc107 !important;
+
+}
+
+
+
+
+
+/* ================= TESTIMONIAL SECTION ================= */
+
+
+.testimonial-section{
+
+    background:#111;
+
+}
+
+
+
+.testimonial-section h2{
+
+    color:white;
+
+}
+
+
+
+.testimonial-section>div>div>p{
+
+    color:#ccc !important;
+
+}
+
+
+
+.testimonial-card{
+
+    background:#2f2f2f;
+
+    border-radius:25px;
+
+    padding:35px 25px;
+
+    height:100%;
+
+    text-align:center;
+
+    transition:0.4s;
+
+}
+
+
+
+.testimonial-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(255,193,7,0.25);
+
+}
+
+
+
+.testimonial-card img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:3px solid #ffc107;
+
+}
+
+
+
+.testimonial-card h5{
+
+    color:white;
+
+    margin-top:15px;
+
+    font-weight:700;
+
+}
+
+
+
+.testimonial-card p{
+
+    color:#ddd !important;
+
+}
+
+
+
+.testimonial-card .stars i{
+
+    color:#ffc107;
+
+}
+
+
+
+
+
+
+/* ================= GALLERY ================= */
+
+
+.gallery-section{
+
+    background:#f8f9fa;
+
+}
+
+
+
+.gallery-box{
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+}
+
+
+
+.gallery-box img{
+
+    width:100%;
+
+    height:250px;
+
+    object-fit:cover;
+
+    transition:0.5s;
+
+}
+
+
+
+.gallery-box:hover img{
+
+    transform:scale(1.1);
+
+}
+
+
+
+
+
+/* ================= WHY CHOOSE EVENTLENS ================= */
+
+
+.why-section{
+
+    background:#111;
+
+}
+
+
+
+.why-section h2{
+
+    color:white;
+
+}
+
+
+
+.why-card{
+
+    background:#2f2f2f;
+
+    padding:35px 20px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    height:100%;
+
+    transition:0.4s;
+
+}
+
+
+
+.why-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(255,193,7,0.25);
+
+}
+
+
+
+.why-card i{
+
+    color:#ffc107;
+
+    font-size:45px;
+
+}
+
+
+
+.why-card h5{
+
+    color:white;
+
+    margin-top:20px;
+
+}
+
+
+
+.why-card p{
+
+    color:#ccc !important;
+
+}
+
+
+
+
+
+
+/* ================= PROFESSIONAL FOOTER ================= */
+
+
+.footer-section{
+
+    background:#111;
+
+    color:white;
+
+}
+
+
+
+.footer-section h3,
+.footer-section h5{
+
+    font-weight:700;
+
+}
+
+
+
+.footer-section h5{
+
+    color:#ffc107;
+
+}
+
+
+
+.footer-section p{
+
+    color:#ccc;
+
+}
+
+
+
+.footer-section ul{
+
+    padding:0;
+
+}
+
+
+
+.footer-section ul li{
+
+    list-style:none;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.footer-section a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+
+.footer-section a:hover{
+
+    color:#ffc107;
+
+}
+
+
+
+.footer-section i{
+
+    font-size:25px;
+
+    margin-right:15px;
+
+    transition:0.3s;
+
+}
+
+
+
+.footer-section i:hover{
+
+    color:#ffc107;
+
+    transform:translateY(-5px);
+
+}
+
+
+
+
+/* ================= MOBILE ================= */
+
+
+@media(max-width:768px){
+
+
+    .statistics-box h2{
+
+        font-size:32px;
+
+    }
+
+
+    .package-card .card-body{
+
+        padding:30px 20px;
+
+    }
+
+
+    .gallery-box img{
+
+        height:200px;
+
+    }
+
+
+}
+
+/*   providers   */
+/* ================= HOME PAGE PROVIDER IMAGES ================= */
+
+.home-provider-img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    border-radius:20px 20px 0 0;
+
+    display:block;
+
+}
+
+/* ===========================================
+   FOOTER DESIGN
+=========================================== */
+
+
+footer{
+
+    background:#111 !important;
+
+    color:white;
+
+}
+
+
+
+/* Footer Brand */
+
+
+footer h3{
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+
+
+footer h3 i{
+
+    margin-right:10px;
+
+}
+
+
+
+footer p{
+
+    color:#ccc;
+
+    line-height:1.7;
+
+}
+
+
+
+/* Footer Headings */
+
+
+footer h5{
+
+    color:white;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+
+
+/* Quick Links */
+
+
+footer ul li{
+
+    margin-bottom:12px;
+
+}
+
+
+
+footer ul li a{
+
+    color:white !important;
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+}
+
+
+
+footer ul li a:hover{
+
+    color:#ffc107 !important;
+
+    padding-left:8px;
+
+}
+
+
+
+/* Services List */
+
+
+footer ul li{
+
+    color:#ddd;
+
+}
+
+
+
+/* Social Media Icons */
+
+
+footer .fab{
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+
+}
+
+
+
+footer .fab:hover{
+
+    color:#ffc107;
+
+    transform:translateY(-5px) scale(1.1);
+
+}
+
+
+
+/* Click / Active Effect */
+
+
+footer .fab:active{
+
+    color:#ffc107;
+
+    transform:scale(0.9);
+
+}
+
+
+
+/* Horizontal Line */
+
+
+footer hr{
+
+    opacity:0.3;
+
+}
+
+
+
+/* Copyright */
+
+
+footer .text-center{
+
+    color:#ccc;
+
+    font-size:15px;
+
+}
+
+
+
+/* Mobile Footer */
+
+
+@media(max-width:768px){
+
+
+    footer .col-lg-4,
+    footer .col-lg-2,
+    footer .col-lg-3{
+
+        text-align:center;
+
+        margin-bottom:30px;
+
+    }
+
+
+}
+
+/* Footer Brand Text */
+
+footer h3{
+
+    color:white !important;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.navbar .btn{
+
+    border-radius:25px;
+    padding:8px 22px;
+
+}
+
+/* ================= HOW IT WORKS CARDS ================= */
+
+.how-card{
+
+    border:2px solid #f6f64d;   /* black border */
+
+    border-radius:20px;      /* rounded corners */
+
+    padding:30px 20px;
+
+    transition:0.3s ease;
+
+}
+
+
+.how-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+
+
+/* ================= STATISTICS BOXES ================= */
+
+.statistics-box{
+
+    background:#e9ecef;
+
+    border-radius:15px;
+
+    padding:20px 10px;
+
+    transition:0.3s ease;
+
+}
+
+
+.statistics-box:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+}
+
+
+.statistics-box i{
+
+    margin-bottom:5px;
+
+}
+
+
+.statistics-box h2{
+
+    font-size:30px;
+
+}
+
+
+.statistics-box p{
+
+    margin-bottom:0;
+
+    color:#555;
+
+}
+
+
+
+.packages-border{
+
+    border:1px solid #ddd;
+
+    border-radius:25px;
+
+    margin:30px;
+
+    background:#fafafa;
+
+}

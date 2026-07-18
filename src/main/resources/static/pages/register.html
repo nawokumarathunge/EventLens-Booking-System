@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | EventLens</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+
+<body class="register-body">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="../index.html">
+            <i class="fa fa-camera text-warning me-2"></i>
+            EventLens
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-warning ms-3" href="register.html">Register</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+.register-body {
+padding-top: 70px;
+}
+
+<div class="container py-5">
+
+    <div class="card shadow-lg p-4 register-card">
+
+        <h3 class="text-center mb-4">
+            <i class="fa fa-user-plus text-warning"></i> Create Account
+        </h3>
+
+        <!-- ROLE SELECT -->
+        <div class="mb-3">
+            <label class="form-label">Register As</label>
+            <select class="form-select" id="roleSelect" onchange="showForm()">
+                <option value="">-- Select Role --</option>
+                <option value="customer">Customer</option>
+                <option value="provider">Provider</option>
+            </select>
+        </div>
+
+        <!-- ================= CUSTOMER FORM ================= -->
+        <form id="customerForm" class="d-none" onsubmit="registerUser(event)">
+
+            <h5 class="mb-3 text-primary">Customer Details</h5>
+
+            <div class="mb-3">
+                <input type="text" id="customerName" class="form-control" placeholder="Full Name">
+            </div>
+
+            <div class="mb-3">
+                <input type="email" id="customerEmail" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="mb-3">
+                <input type="password" id="customerPassword" class="form-control" placeholder="Password">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Phone Number">
+            </div>
+
+            <button class="btn btn-primary w-100">Register as Customer</button>
+
+        </form>
+
+        <!-- ================= PROVIDER FORM ================= -->
+        <form id="providerForm" class="d-none" onsubmit="registerUser(event)">
+
+            <h5 class="mb-3 text-success">Provider Details</h5>
+
+            <div class="mb-3">
+                <input type="text" id="providerName" class="form-control" placeholder="Full Name">
+            </div>
+
+            <div class="mb-3">
+                <input type="email" id="providerEmail" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="mb-3">
+                <input type="password" id="providerPassword" class="form-control" placeholder="Password">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Phone Number">
+            </div>
+
+
+            <div class="mb-3">
+            <select id="providerRole" class="form-select">
+                <option value="">-- Select Role --</option>
+
+                <option value="PHOTOGRAPHER">
+                    Photographer
+                </option>
+
+                <option value="VIDEOGRAPHER">
+                    Videographer
+                </option>
+            </select>
+            </div>
+
+            <!-- EXTRA PROVIDER FIELDS -->
+            <div class="mb-3">
+                <textarea class="form-control" placeholder="About Yourself / Experience"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Upload 3 Best Photos</label>
+
+                <input type="file" class="form-control mb-2" accept="image/*">
+                <input type="file" class="form-control mb-2" accept="image/*">
+                <input type="file" class="form-control" accept="image/*">
+
+                <small class="text-muted">Upload your best work (for portfolio display)</small>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Address">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Telephone / Business Number">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Profile Photo</label>
+                <input type="file" class="form-control" accept="image/*">
+            </div>
+
+            <button class="btn btn-success w-100">Register as Provider</button>
+
+        </form>
+
+        <div class="text-center mt-3">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script>
+    function showForm() {
+        let role = document.getElementById("roleSelect").value;
+
+        document.getElementById("customerForm").classList.add("d-none");
+        document.getElementById("providerForm").classList.add("d-none");
+
+        if (role === "customer") {
+            document.getElementById("customerForm").classList.remove("d-none");
+        }
+
+        if (role === "provider") {
+            document.getElementById("providerForm").classList.remove("d-none");
+        }
+    }
+    function registerUser(event){
+
+        event.preventDefault();
+
+
+        let role = document.getElementById("roleSelect").value;
+
+
+        let data = {};
+
+
+        if(role === "customer"){
+
+            data = {
+
+                name: document.getElementById("customerName").value,
+                email: document.getElementById("customerEmail").value,
+                password: document.getElementById("customerPassword").value,
+                role: "CUSTOMER"
+
+            };
+
+        }
+
+
+        else if(role === "provider"){
+
+            data = {
+
+                name: document.getElementById("providerName").value,
+                email: document.getElementById("providerEmail").value,
+                password: document.getElementById("providerPassword").value,
+                role: document.getElementById("providerRole").value
+            };
+
+        }
+
+
+
+        fetch("http://localhost:8080/api/users/register",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify(data)
+
+        })
+
+
+            .then(response=>{
+
+                if(!response.ok){
+                    throw new Error("Registration failed");
+                }
+
+                return response.text();
+
+            })
+
+
+            .then(result=>{
+
+                alert(result);
+
+                window.location.href="login.html";
+
+            })
+
+
+            .catch(error=>{
+
+                console.log(error);
+                alert("Registration Failed!");
+
+            });
+
+
+    }
+</script>
+
+</body>
+</html>
