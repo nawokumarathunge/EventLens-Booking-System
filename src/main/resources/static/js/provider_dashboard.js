@@ -11,10 +11,13 @@ if(user){
 
     document.getElementById("providerEmail").innerHTML = user.email;
 
+    document.getElementById("navProviderName").innerHTML = user.name;
+
+
 }
 else{
 
-    window.location.href="login.html";
+    window.location.href="../pages/login.html";
 
 }
 
@@ -80,34 +83,42 @@ ${booking.status}
 
 <td>
 
+<div class="d-flex flex-column gap-1">
+
 <button class="btn btn-success btn-sm"
 onclick="confirmBooking(${booking.id})">
-
-Confirm
-
+<i class="fa fa-check"></i> Confirm
 </button>
 
 <button class="btn btn-danger btn-sm"
 onclick="rejectBooking(${booking.id})">
-
-Reject
-
+<i class="fa fa-times"></i> Reject
 </button>
 
 <button class="btn btn-primary btn-sm"
 onclick="completeBooking(${booking.id})">
-
-Complete
-
+<i class="fa fa-circle-check"></i> Complete
 </button>
 
-</td>
+<button class="btn btn-info btn-sm"
+onclick="viewBooking(${booking.id})">
 
+<i class="fa fa-eye"></i>
+
+</button>
+</div>
+
+</td>
 </tr>
 
-`;
+`;});
+            document.getElementById("totalBookings").innerText = bookings.length;
 
-            });
+            document.getElementById("completedBookings").innerText =
+                bookings.filter(b => b.status === "COMPLETED").length;
+
+            document.getElementById("pendingBookings").innerText =
+                bookings.filter(b => b.status === "PENDING").length;
 
         });
 
@@ -220,6 +231,9 @@ Delete
 
             document.getElementById("packageList").innerHTML = html;
 
+            document.getElementById("totalPackages").innerText = data.length;
+
+
         });
 
 }
@@ -279,6 +293,71 @@ function savePackage(){
         .then(()=>{
 
             location.reload();
+
+        });
+
+}
+function showDashboard(){
+
+    document.getElementById("dashboardSection").style.display = "block";
+    document.getElementById("profileSection").style.display = "none";
+    document.getElementById("packagesSection").style.display = "none";
+
+}
+function showProfile(){
+
+    document.getElementById("dashboardSection").style.display = "none";
+    document.getElementById("profileSection").style.display = "block";
+    document.getElementById("packagesSection").style.display = "none";
+
+}
+function showPackages(){
+
+    document.getElementById("dashboardSection").style.display = "none";
+    document.getElementById("profileSection").style.display = "none";
+    document.getElementById("packagesSection").style.display = "block";
+
+}
+
+function updatePackage(){
+
+    const id = document.getElementById("editPkgId").value;
+
+    const data = {
+
+        id: id,
+        name: document.getElementById("editPkgName").value,
+        price: document.getElementById("editPkgPrice").value,
+        hours: document.getElementById("editPkgHours").value,
+        description: document.getElementById("editPkgDescription").value,
+
+        serviceProvider:{
+            id:user.id
+        }
+
+    };
+
+    fetch("http://localhost:8080/api/packages/" + id,{
+
+        method:"PUT",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(data)
+
+    })
+
+        .then(()=>{
+
+            alert("Package Updated Successfully");
+
+            bootstrap.Modal.getInstance(
+                document.getElementById("editPackageModal")
+            ).hide();
+
+            loadPackages();
 
         });
 

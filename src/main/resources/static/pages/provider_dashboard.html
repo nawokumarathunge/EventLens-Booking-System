@@ -15,23 +15,49 @@
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar navbar-dark bg-dark">
   <div class="container">
+
     <a class="navbar-brand fw-bold" href="../index.html">
-      <i class="fa fa-camera text-warning me-2"></i> Provider Dashboard
+      <i class="fa fa-camera text-warning me-2"></i>
+      Provider Dashboard
     </a>
 
-    <a href="#" onclick="logout()" class="btn btn-danger btn-sm">
-      Logout
-    </a>  </div>
+    <div class="ms-auto d-flex align-items-center">
+
+        <span class="text-white me-3 fs-6">Welcome,<strong id="navProviderName"></strong></span>
+
+      <a href="../index.html"
+         class="btn btn-outline-light btn-sm me-2">
+        Home
+      </a>
+
+      <button class="btn btn-outline-warning btn-sm me-2"
+              onclick="showProfile()">
+        My Profile
+      </button>
+
+      <button class="btn btn-outline-success btn-sm me-2"
+              onclick="showPackages()">
+        My Packages
+      </button>
+
+      <button class="btn btn-danger btn-sm"
+              onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
 </nav>
 
 <!-- ================= DASHBOARD ================= -->
 <div class="container mt-4">
 
-  <div class="row">
+  <div id="profileSection" style="display:none;" class="mb-4">
+
 
     <!-- PROFILE CARD -->
-    <div class="col-md-4">
-      <div class="card shadow p-3 profile-card">
+    <div class="card shadow p-4 mb-4">
         <h5>Profile</h5>
         <hr>
 
@@ -40,20 +66,6 @@
         <p><b>Location:</b> <span id="providerEmail"></span></p>
 
         <button class="btn btn-warning w-100 mt-2">Edit Profile</button>
-      </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div class="col-md-8">
-
-      <!-- PACKAGES -->
-      <div class="card shadow p-3 mb-3">
-        <h5>My Packages</h5>
-        <button class="btn btn-success btn-sm mb-2"
-                onclick="showAddPackageForm()">
-          + Add Package
-        </button>
-        <div id="packageList"></div>
       </div>
 
       <!-- PORTFOLIO -->
@@ -65,6 +77,78 @@
           <div class="col-4"><img src="https://via.placeholder.com/150" class="img-fluid"></div>
         </div>
       </div>
+
+    </div>
+</div>
+
+
+
+<!-- MAIN CONTENT -->
+      <div id="packagesSection" style="display:none;">
+
+      <!-- PACKAGES -->
+        <div class="card shadow p-4">
+          <h5>My Packages</h5>
+        <button class="btn btn-success btn-sm mb-2"
+                onclick="showAddPackageForm()">
+          + Add Package
+        </button>
+        <div id="packageList"></div>
+      </div>
+
+      <!-- EDIT PACKAGE MODAL -->
+      <div class="modal fade" id="editPackageModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5>Edit Package</h5>
+            </div>
+
+            <div class="modal-body">
+
+              <input type="hidden" id="editPkgId">
+
+              <input id="editPkgName"
+                     class="form-control mb-2"
+                     placeholder="Package Name">
+
+              <input id="editPkgPrice"
+                     type="number"
+                     class="form-control mb-2"
+                     placeholder="Price">
+
+              <input id="editPkgHours"
+                     type="number"
+                     class="form-control mb-2"
+                     placeholder="Hours">
+
+              <textarea id="editPkgDescription"
+                        class="form-control"
+                        placeholder="Description"></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+
+              <button class="btn btn-success"
+                      onclick="updatePackage()">
+                Update
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      </div>
+
+      <div id="dashboardSection">
+
+
 
       <!-- BOOKINGS -->
       <div class="card shadow p-3">
@@ -90,12 +174,39 @@
         </table>
 
       </div>
+        <div class="card shadow p-3 mt-3">
+
+          <h5 class="mb-3">Dashboard Summary</h5>
+
+          <div class="row text-center">
+
+            <div class="col-6 mb-3">
+              <h3 id="totalBookings">0</h3>
+              <small>Total Bookings</small>
+            </div>
+
+            <div class="col-6 mb-3">
+              <h3 id="totalPackages">0</h3>
+              <small>Packages</small>
+            </div>
+
+            <div class="col-6">
+              <h3 id="completedBookings">0</h3>
+              <small>Completed</small>
+            </div>
+
+            <div class="col-6">
+              <h3 id="pendingBookings">0</h3>
+              <small>Pending</small>
+            </div>
+
+          </div>
+
+        </div>
 
     </div>
 
   </div>
-
-</div>
 
 <div class="modal fade" id="packageModal">
 
@@ -124,6 +235,45 @@
         <button class="btn btn-success" onclick="savePackage()">
           Save
         </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- BOOKING DETAILS -->
+<div class="modal fade" id="bookingModal">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5>Booking Details</h5>
+
+      </div>
+
+      <div class="modal-body">
+
+        <p><b>Customer :</b> <span id="viewCustomer"></span></p>
+
+        <p><b>Package :</b> <span id="viewPackage"></span></p>
+
+        <p><b>Event :</b> <span id="viewEvent"></span></p>
+
+        <p><b>Date :</b> <span id="viewDate"></span></p>
+
+        <p><b>Time :</b> <span id="viewTime"></span></p>
+
+        <p><b>Location :</b> <span id="viewLocation"></span></p>
+
+        <p><b>Special Request :</b></p>
+
+        <p id="viewRequest"></p>
 
       </div>
 
