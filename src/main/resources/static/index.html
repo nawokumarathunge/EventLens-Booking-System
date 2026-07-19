@@ -31,23 +31,21 @@
 
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#providers">Providers</a></li>
+                <li class="nav-item"><a class="nav-link" href="providers.html">Providers</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item">
-                    <a class="btn btn-warning ms-3" href="pages/login.html">Login</a>
-                <li class="nav-item">
-                    <a href="pages/register.html"
-                       class="btn btn-outline-light">
+                <div id="authButtons">
 
-                        Register
-
+                    <a class="btn btn-warning ms-3" href="pages/login.html">
+                        Login
                     </a>
 
-                </li>
+                    <a class="btn btn-outline-light ms-2" href="pages/register.html">
+                        Register
+                    </a>
 
-                </li>
+                </div>
             </ul>
         </div>
     </div>
@@ -71,35 +69,23 @@
         </h1>
 
         <p class="hero-subtext">
-
-
             <br> Book trusted photographers & videographers
             <br>for weddings,birthdays, graduations, corporate events and </br>
             unforgettable celebrations.
-
-
-
         </p>
 
-        <a href="providers.html"
-           class="btn btn-warning btn-lg me-3">
-
+        <a href="#" onclick="goToBooking()" class="btn btn-warning btn-lg me-3">
             <i class="fa-solid fa-magnifying-glass"></i>
-
             Find Providers
-
         </a>
 
         <a href="#services"
            class="btn btn-outline-light btn-lg">
-
             Explore Services
-
         </a>
     </div>
 
 </header>
-
 
 
 <!-- ================= STATISTICS ================= -->
@@ -320,139 +306,6 @@
         </div>
     </div>
 </section>
-
-
-<!-- ================= POPULAR PACKAGES ================= -->
-
-<section class="py-5 package-section packages-border">
-
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <h2 class="fw-bold">
-                Popular Packages
-            </h2>
-
-            <p class="text-muted">
-                Choose the package that best fits your event.
-            </p>
-
-        </div>
-
-        <div class="row g-4">
-
-            <div class="col-lg-4">
-
-                <div class="card package-card">
-
-                    <div class="card-body p-5">
-
-                        <h3>Basic</h3>
-
-                        <h2 class="text-warning fw-bold">
-                            Rs.15,000
-                        </h2>
-
-                        <hr>
-
-                        <p>2 Hours Coverage</p>
-
-                        <p>50 Edited Photos</p>
-
-                        <p>Online Gallery</p>
-
-                        <a href="providers.html"
-                           class="btn btn-outline-warning">
-
-                            Book Now
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-                <div class="card shadow border-warning border-3 text-center h-100">
-
-                    <div class="card-body p-5">
-
-<span class="badge bg-warning mb-3">
-
-Most Popular
-
-</span>
-
-                        <h3>Standard</h3>
-
-                        <h2 class="text-warning fw-bold">
-                            Rs.35,000
-                        </h2>
-
-                        <hr>
-
-                        <p>5 Hours Coverage</p>
-
-                        <p>200 Photos</p>
-
-                        <p>Highlight Video</p>
-
-                        <a href="providers.html"
-                           class="btn btn-warning">
-
-                            Book Now
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
-
-                <div class="card package-card popular-package">
-
-                    <div class="card-body p-5">
-
-                        <h3>Premium</h3>
-
-                        <h2 class="text-warning fw-bold">
-                            Rs.60,000
-                        </h2>
-
-                        <hr>
-
-                        <p>Full Day Coverage</p>
-
-                        <p>Unlimited Photos</p>
-
-                        <p>Cinematic Video</p>
-
-                        <a href="providers.html"
-                           class="btn btn-outline-warning">
-
-                            Book Now
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
 
 <!-- ================= FEATURED PROVIDERS ================= -->
 
@@ -995,65 +848,8 @@ Most Popular
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Hero Slider -->
 
-<script>
-
-    let slides = document.querySelectorAll(".slide");
-
-    let current = 0;
-
-    function showNextSlide(){
-
-        slides[current].classList.remove("active");
-
-        current=(current+1)%slides.length;
-
-        slides[current].classList.add("active");
-
-    }
-
-    setInterval(showNextSlide,4000);
-
-</script>
-
-
-
-<script>
-
-    const sections = document.querySelectorAll("section, footer");
-    const navLinks = document.querySelectorAll(".nav-link");
-
-    window.addEventListener("scroll", () => {
-
-        let current = "";
-
-        sections.forEach(section => {
-
-            const sectionTop = section.offsetTop - 100;
-
-            if(scrollY >= sectionTop){
-                current = section.getAttribute("id");
-            }
-
-        });
-
-
-        navLinks.forEach(link => {
-
-            link.classList.remove("active");
-
-            if(link.getAttribute("href") === "#" + current){
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-    });
-
-</script>
+<script src="js/index.js"></script>
 
 </body>
 </html>

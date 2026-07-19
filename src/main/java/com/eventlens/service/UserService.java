@@ -1,5 +1,5 @@
 package com.eventlens.service;
-
+import com.eventlens.enums.Role;
 import com.eventlens.dto.RegisterRequest;
 import com.eventlens.entity.User;
 import com.eventlens.repository.UserRepository;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.eventlens.dto.LoginRequest;
 import java.util.List;
+import java.util.ArrayList;
 
 
 @Service
@@ -75,4 +76,15 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+    public List<User> getProviders() {
+
+        List<User> providers = new ArrayList<>();
+
+        providers.addAll(userRepository.findByRole(Role.PHOTOGRAPHER));
+        providers.addAll(userRepository.findByRole(Role.VIDEOGRAPHER));
+
+        return providers;
+    }
+
 }

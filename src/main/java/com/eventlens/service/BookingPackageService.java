@@ -15,6 +15,8 @@ public interface BookingPackageService {
 
     void delete(Long id);
 
+    List<BookingPackage> getPackagesByProvider(Long providerId);
+
 }
 
 

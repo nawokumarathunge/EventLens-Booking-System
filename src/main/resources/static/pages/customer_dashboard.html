@@ -34,7 +34,7 @@
                 Find Providers
             </a>
 
-            <a href="login.html" class="btn btn-danger">
+            <a href="#" class="btn btn-danger" onclick="logout()">
                 Logout
             </a>
 
@@ -84,6 +84,25 @@
             </div>
 
         </div>
+        <div class="col-md-3">
+
+            <div class="card dashboard-card text-center p-4">
+
+                <i class="fa-solid fa-box-open fa-3x text-info mb-3"></i>
+
+                <h5>Packages</h5>
+
+                <p>Browse available photography packages.</p>
+
+                <a href="#" class="btn btn-info" onclick="showPackages()">
+                    View
+                </a>
+
+            </div>
+
+        </div>
+
+
 
         <div class="col-md-3">
 
@@ -142,19 +161,25 @@
 
 </div>
 
-<!-- ================= RECENT BOOKINGS ================= -->
-
-<div class="container mt-5">
+<div class="container mt-5" id="packagesSection" style="display:none;">
 
     <div class="card shadow border-0">
 
-        <div class="card-header bg-warning">
+        <div class="card-header bg-info text-white">
+            <h4>Available Packages</h4>
+        </div>
 
-            <h4 class="mb-0">
-                Recent Bookings
-            </h4>
+        <div class="card-body">
+
+            <div class="row g-4" id="packagesContainer">
+
+            </div>
 
         </div>
+
+    </div>
+
+</div>
 
         <!-- ================= ALL BOOKINGS ================= -->
 
@@ -184,31 +209,7 @@
 
                 </thead>
 
-                <tbody>
-
-                <tr>
-                    <td>#1001</td>
-                    <td>John Photography</td>
-                    <td>Wedding</td>
-                    <td>25 Aug 2026</td>
-                    <td><span class="badge bg-warning">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>#1002</td>
-                    <td>Elite Studio</td>
-                    <td>Birthday</td>
-                    <td>18 Sep 2026</td>
-                    <td><span class="badge bg-success">Approved</span></td>
-                </tr>
-
-                <tr>
-                    <td>#1003</td>
-                    <td>Memory Makers</td>
-                    <td>Graduation</td>
-                    <td>10 Oct 2026</td>
-                    <td><span class="badge bg-secondary">Completed</span></td>
-                </tr>
+                <tbody id="bookingTableBody">
 
                 </tbody>
 
@@ -288,67 +289,7 @@ Leave a Review
 
 </footer>
 
+<script src="../js/customer_dashboard.js"></script>
+
 </body>
-
-<script>
-
-function showBookings(){
-
-    document.getElementById("bookingsSection").style.display="block";
-
-    document.getElementById("notificationsSection").style.display="none";
-
-    document.getElementById("reviewsSection").style.display="none";
-
-    document.getElementById("bookingsSection").scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-function showNotifications(){
-
-    document.getElementById("notificationsSection").style.display="block";
-
-    document.getElementById("bookingsSection").style.display="none";
-
-    document.getElementById("reviewsSection").style.display="none";
-
-    document.getElementById("notificationsSection").scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-function showReviews() {
-
-    document.getElementById("reviewsSection").style.display = "block";
-
-    document.getElementById("bookingsSection").style.display = "none";
-
-    document.getElementById("notificationsSection").style.display = "none";
-
-    document.getElementById("reviewsSection").scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-    let user = JSON.parse(
-        localStorage.getItem("user")
-    );
-
-
-    if(user){
-
-        document.getElementById("userName").innerHTML = user.name;
-
-    }
-    else{
-
-        window.location.href="login.html";
-
-    }
-
-</script>
 </html>

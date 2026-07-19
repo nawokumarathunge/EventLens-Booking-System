@@ -14,6 +14,10 @@ public class BookingPackage {
     private Integer hours;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "service_provider_id")
+    private User serviceProvider;
+
     public BookingPackage() {}
 
     public BookingPackage(String name, Double price, Integer hours, String description) {
@@ -36,4 +40,12 @@ public class BookingPackage {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public User getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(User serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
 }

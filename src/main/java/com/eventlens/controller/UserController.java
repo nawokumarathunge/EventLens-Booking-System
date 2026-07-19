@@ -54,4 +54,9 @@ public class UserController {
         return "User deleted successfully";
     }
 
+    @GetMapping("/providers")
+    public List<User> getProviders() {
+        return userService.getProviders();
+    }
+
 }

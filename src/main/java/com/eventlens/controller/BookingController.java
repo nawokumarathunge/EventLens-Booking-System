@@ -6,20 +6,26 @@ import com.eventlens.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
+
 
 
 @RestController
 @RequestMapping("/api/bookings")
+@CrossOrigin(origins = "http://localhost:63342")
 public class BookingController {
 
     @Autowired
     private BookingService bookingService;
 
     @PostMapping
-    public Booking createBooking(@RequestBody BookingRequest request) {
+    public ResponseEntity<?> createBooking(@RequestBody BookingRequest request) {
 
-        return bookingService.createBooking(request);
+        if (request.getCustomerId() == null) {
+            return ResponseEntity.status(401).body("Please login first!");
+        }
 
+        return ResponseEntity.ok(bookingService.createBooking(request));
     }
 
     // Get All
@@ -70,4 +76,21 @@ public class BookingController {
     public Booking completeBooking(@PathVariable Long id) {
         return bookingService.completeBooking(id);
     }
+
+    // Get bookings by customer
+    @GetMapping("/customer/{customerId}")
+    public List<Booking> getBookingsByCustomer(@PathVariable Long customerId) {
+
+        return bookingService.getBookingsByCustomer(customerId);
+
+    }
+
+    // Get bookings by provider
+    @GetMapping("/provider/{providerId}")
+    public List<Booking> getBookingsByProvider(@PathVariable Long providerId) {
+
+        return bookingService.getBookingsByProvider(providerId);
+
+    }
+
 }

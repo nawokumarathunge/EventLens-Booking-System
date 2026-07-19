@@ -25,4 +25,8 @@ public interface BookingService {
 
     Booking completeBooking(Long id);
 
+    List<Booking> getBookingsByCustomer(Long customerId);
+
+    List<Booking> getBookingsByProvider(Long providerId);
+
 }

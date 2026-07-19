@@ -37,7 +37,7 @@
 
         <p><b>Name:</b> <span id="providerName"></span></p>
         <p><b>Role:</b> <span id="providerRole"></span></p>
-        <p><b>Location:</b> <span id="providerEmail"></p>
+        <p><b>Location:</b> <span id="providerEmail"></span></p>
 
         <button class="btn btn-warning w-100 mt-2">Edit Profile</button>
       </div>
@@ -49,12 +49,11 @@
       <!-- PACKAGES -->
       <div class="card shadow p-3 mb-3">
         <h5>My Packages</h5>
-        <button class="btn btn-success btn-sm mb-2">+ Add Package</button>
-
-        <ul class="list-group">
-          <li class="list-group-item">Wedding Package - $500</li>
-          <li class="list-group-item">Birthday Package - $200</li>
-        </ul>
+        <button class="btn btn-success btn-sm mb-2"
+                onclick="showAddPackageForm()">
+          + Add Package
+        </button>
+        <div id="packageList"></div>
       </div>
 
       <!-- PORTFOLIO -->
@@ -71,17 +70,23 @@
       <div class="card shadow p-3">
         <h5>Booking Requests</h5>
 
-        <table class="table">
+        <table class="table table-hover">
+
+          <thead>
           <tr>
             <th>Customer</th>
+            <th>Package</th>
+            <th>Event</th>
             <th>Date</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
-          <tr>
-            <td>Amal</td>
-            <td>2026-07-10</td>
-            <td><span class="badge bg-warning">Pending</span></td>
-          </tr>
+          </thead>
+
+          <tbody id="bookingTableBody">
+
+          </tbody>
+
         </table>
 
       </div>
@@ -91,37 +96,46 @@
   </div>
 
 </div>
-<script>
 
-  let user = JSON.parse(
-          localStorage.getItem("user")
-  );
+<div class="modal fade" id="packageModal">
 
+  <div class="modal-dialog">
 
-  if(user){
+    <div class="modal-content">
 
-    document.getElementById("providerName").innerHTML = user.name;
+      <div class="modal-header">
+        <h5>Add Package</h5>
+      </div>
 
-    document.getElementById("providerRole").innerHTML = user.role;
+      <div class="modal-body">
 
-    document.getElementById("providerEmail").innerHTML = user.email;
+        <input id="pkgName" class="form-control mb-2" placeholder="Package Name">
 
-  }
-  else{
+        <input id="pkgPrice" type="number" class="form-control mb-2" placeholder="Price">
 
-    window.location.href="login.html";
+        <input id="pkgHours" type="number" class="form-control mb-2" placeholder="Hours">
 
-  }
+        <textarea id="pkgDescription" class="form-control" placeholder="Description"></textarea>
 
+      </div>
 
+      <div class="modal-footer">
 
-  function logout(){
+        <button class="btn btn-success" onclick="savePackage()">
+          Save
+        </button>
 
-    localStorage.removeItem("user");
+      </div>
 
-    window.location.href="login.html";
+    </div>
 
-  }
-</script>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../js/provider_dashboard.js"></script>
+
 </body>
 </html>

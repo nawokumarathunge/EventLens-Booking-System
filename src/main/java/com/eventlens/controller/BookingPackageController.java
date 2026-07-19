@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/packages")
+@CrossOrigin(origins = "http://localhost:63342")
 public class BookingPackageController {
 
     @Autowired
@@ -49,5 +50,12 @@ public class BookingPackageController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         packageService.delete(id);
+    }
+
+    @GetMapping("/provider/{providerId}")
+    public List<BookingPackage> getPackagesByProvider(@PathVariable Long providerId){
+
+        return packageService.getPackagesByProvider(providerId);
+
     }
 }
