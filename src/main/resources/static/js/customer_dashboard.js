@@ -21,8 +21,30 @@ function showBookings(){
 
     document.getElementById("bookingsSection").style.display = "block";
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) {
+
+        window.location.href = "login.html";
+
+    }
+
+    if (user.role !== "CUSTOMER") {
+
+        alert("Access Denied!");
+
+        window.location.href = "provider_dashboard.html";
+
+    }
+    function logout(){
+
+        localStorage.removeItem("user");
+
+        window.location.href = "../index.html";
+
+    }
+
+    document.getElementById("userName").innerHTML = user.name;
 
     fetch("http://localhost:8080/api/bookings/customer/" + user.id)
 

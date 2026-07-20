@@ -14,6 +14,16 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String phone;
+    private String location;
+    private String experience;
+    private String address;
+    private String dob;
+    private String gender;
+
+
+    @Column(length = 1000)
+    private String about;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -56,4 +66,60 @@ public class User {
         return role;
     }
     public void setRole(Role role) { this.role = role; }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

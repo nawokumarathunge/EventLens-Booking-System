@@ -25,12 +25,12 @@ public class UserService {
         }
 
         // create user
-        User user = new User(
-                request.getName(),
-                request.getEmail(),
-                request.getPassword(),
-                request.getRole()
-        );
+        User user = new User();
+
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
 
         userRepository.save(user);
 
@@ -68,6 +68,20 @@ public class UserService {
 
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
+
+        user.setPhone(updatedUser.getPhone());
+
+        user.setAddress(updatedUser.getAddress());
+
+        user.setDob(updatedUser.getDob());
+
+        user.setGender(updatedUser.getGender());
+
+        user.setLocation(updatedUser.getLocation());
+
+        user.setExperience(updatedUser.getExperience());
+
+        user.setAbout(updatedUser.getAbout());
 
         return userRepository.save(user);
     }

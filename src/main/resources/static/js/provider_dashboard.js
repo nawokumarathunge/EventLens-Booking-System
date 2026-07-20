@@ -1,26 +1,20 @@
-let user = JSON.parse(
-    localStorage.getItem("user")
-);
+let user = JSON.parse(localStorage.getItem("user"));
 
+if (!user) {
 
-if(user){
-
-    document.getElementById("providerName").innerHTML = user.name;
-
-    document.getElementById("providerRole").innerHTML = user.role;
-
-    document.getElementById("providerEmail").innerHTML = user.email;
-
-    document.getElementById("navProviderName").innerHTML = user.name;
-
+    window.location.href = "../pages/login.html";
 
 }
-else{
+if (
+    user.role !== "PHOTOGRAPHER" &&
+    user.role !== "VIDEOGRAPHER"
+) {
 
-    window.location.href="../pages/login.html";
+    alert("Access Denied!");
+
+    window.location.href = "customer_dashboard.html";
 
 }
-
 
 
 function logout(){
@@ -182,46 +176,54 @@ function completeBooking(id){
 
 loadPackages();
 
-function loadPackages(){
+function loadPackages() {
 
     fetch("http://localhost:8080/api/packages/provider/" + user.id)
-        .then(res=>res.json())
+        .then(res => res.json())
+        .then(data => {
 
-        .then(data=>{
+            let html = "";
 
-            let html="";
-
-            data.forEach(pkg=>{
+            data.forEach(pkg => {
 
                 html += `
 
-<div class="card mb-2">
+<div class="col-md-4 mb-4">
 
-<div class="card-body">
+    <div class="card shadow border-0 text-center h-100 p-4">
 
-<h5>${pkg.name}</h5>
+        <i class="fa-solid fa-camera text-warning fa-3x mb-3"></i>
 
-<p>Rs.${pkg.price}</p>
+        <h3 class="fw-bold">${pkg.name}</h3>
 
-<p>${pkg.hours} Hours</p>
+        <h2 class="text-warning fw-bold">
+            Rs. ${pkg.price}
+        </h2>
 
-<p>${pkg.description}</p>
+        <hr>
 
-<button class="btn btn-warning btn-sm"
-onclick="editPackage(${pkg.id})">
+        <p>${pkg.description}</p>
 
-Edit
+        <p class="text-muted">
+            <i class="fa-solid fa-clock"></i>
+            ${pkg.hours} Hours
+        </p>
 
-</button>
+        <div class="d-grid gap-2">
 
-<button class="btn btn-danger btn-sm"
-onclick="deletePackage(${pkg.id})">
+            <button class="btn btn-warning"
+                    onclick="editPackage(${pkg.id})">
+                <i class="fa-solid fa-pen"></i> Edit
+            </button>
 
-Delete
+            <button class="btn btn-danger"
+                    onclick="deletePackage(${pkg.id})">
+                <i class="fa-solid fa-trash"></i> Delete
+            </button>
 
-</button>
+        </div>
 
-</div>
+    </div>
 
 </div>
 
@@ -229,10 +231,10 @@ Delete
 
             });
 
-            document.getElementById("packageList").innerHTML = html;
+            document.getElementById("packageList").innerHTML =
+                `<div class="row">${html}</div>`;
 
             document.getElementById("totalPackages").innerText = data.length;
-
 
         });
 
@@ -290,34 +292,46 @@ function savePackage(){
 
     })
 
-        .then(()=>{
+        .then(() => {
 
-            location.reload();
+            bootstrap.Modal.getInstance(
+                document.getElementById("packageModal")
+            ).hide();
+
+            document.getElementById("pkgName").value = "";
+            document.getElementById("pkgPrice").value = "";
+            document.getElementById("pkgHours").value = "";
+            document.getElementById("pkgDescription").value = "";
+
+            loadPackages();
+
+            showPackages();
+
+            alert("Package Added Successfully!");
 
         });
 
 }
-function showDashboard(){
+function editPackage(id){
 
-    document.getElementById("dashboardSection").style.display = "block";
-    document.getElementById("profileSection").style.display = "none";
-    document.getElementById("packagesSection").style.display = "none";
+    fetch("http://localhost:8080/api/packages/" + id)
+        .then(res => res.json())
+        .then(pkg => {
 
-}
-function showProfile(){
+            document.getElementById("editPkgId").value = pkg.id;
+            document.getElementById("editPkgName").value = pkg.name;
+            document.getElementById("editPkgPrice").value = pkg.price;
+            document.getElementById("editPkgHours").value = pkg.hours;
+            document.getElementById("editPkgDescription").value = pkg.description;
 
-    document.getElementById("dashboardSection").style.display = "none";
-    document.getElementById("profileSection").style.display = "block";
-    document.getElementById("packagesSection").style.display = "none";
+            new bootstrap.Modal(
+                document.getElementById("editPackageModal")
+            ).show();
 
-}
-function showPackages(){
-
-    document.getElementById("dashboardSection").style.display = "none";
-    document.getElementById("profileSection").style.display = "none";
-    document.getElementById("packagesSection").style.display = "block";
+        });
 
 }
+
 
 function updatePackage(){
 
@@ -362,3 +376,53 @@ function updatePackage(){
         });
 
 }
+
+function hideAllSections(){
+
+    document.getElementById("profileSection").style.display="none";
+    document.getElementById("packagesSection").style.display="none";
+    document.getElementById("bookingsSection").style.display="none";
+    document.getElementById("summarySection").style.display="none";
+    document.getElementById("reviewsSection").style.display="none";
+
+}
+
+function showProfile(){
+    hideAllSections();
+    document.getElementById("profileSection").style.display="block";
+}
+
+function showPackages(){
+    hideAllSections();
+    document.getElementById("packagesSection").style.display="block";
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function showBookings(){
+    hideAllSections();
+    document.getElementById("bookingsSection").style.display="block";
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function showSummary(){
+    hideAllSections();
+    document.getElementById("summarySection").style.display="block";
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function showReviews(){
+    hideAllSections();
+    document.getElementById("reviewsSection").style.display="block";
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+document.getElementById("navProviderName").innerText = user.name;
