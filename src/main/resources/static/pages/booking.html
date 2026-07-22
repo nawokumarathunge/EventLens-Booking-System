@@ -88,9 +88,16 @@
             <textarea class="form-control" rows="3" placeholder="Any special requirements..." id="notes"></textarea>
           </div>
 
-          <button type="button" class="btn btn-warning w-100" onclick="goToPayment()">
-           Continue to Payment
-           </button>
+          <button
+                  type="button"
+                  class="btn btn-success w-100"
+                  onclick="confirmBooking()">
+
+            <i class="fa fa-paper-plane me-2"></i>
+
+            Submit Booking Request
+
+          </button>
 
         </form>
 
@@ -103,16 +110,6 @@
 </div>
 
 <script src="../js/booking.js"></script>
-
-<script>
-
-function goToPayment(){
-
-    window.location.href = "payment.html";
-
-}
-
-</script>
 
 </body>
 </html>

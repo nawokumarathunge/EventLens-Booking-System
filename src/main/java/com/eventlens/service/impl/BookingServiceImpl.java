@@ -1,16 +1,19 @@
 package com.eventlens.service.impl;
 
+import com.eventlens.entity.*;
 import com.eventlens.service.BookingService;
 import com.eventlens.dto.BookingRequest;
-import com.eventlens.entity.Booking;
-import com.eventlens.entity.BookingPackage;
-import com.eventlens.entity.User;
 import com.eventlens.enums.BookingStatus;
 import com.eventlens.repository.BookingPackageRepository;
 import com.eventlens.repository.BookingRepository;
+import com.eventlens.repository.PaymentRepository;
 import com.eventlens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.eventlens.enums.PaymentStatus;
+import com.eventlens.repository.NotificationRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -25,6 +28,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private BookingPackageRepository bookingPackageRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @Override
     public Booking createBooking(BookingRequest request) {
@@ -106,17 +115,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking confirmBooking(Long id) {
-
-        Booking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
-
-        booking.setStatus(BookingStatus.CONFIRMED);
-
-        return bookingRepository.save(booking);
-    }
-
-    @Override
     public Booking rejectBooking(Long id) {
 
         Booking booking = bookingRepository.findById(id)
@@ -125,6 +123,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setStatus(BookingStatus.REJECTED);
 
         return bookingRepository.save(booking);
+
+
     }
 
     @Override
@@ -162,4 +162,50 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.findByServiceProviderId(providerId);
 
     }
+
+    @Override
+    public Booking confirmBooking(Long id) {
+
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        booking.setStatus(BookingStatus.CONFIRMED);
+
+        bookingRepository.save(booking);
+
+        System.out.println("Booking confirmed");
+
+        if (paymentRepository.findByBookingId(booking.getId()).isEmpty()) {
+
+            Payment payment = new Payment();
+
+            payment.setBooking(booking);
+            payment.setCustomer(booking.getCustomer());
+            payment.setAmount(booking.getBookingPackage().getPrice());
+            payment.setStatus(PaymentStatus.PENDING);
+
+            paymentRepository.save(payment);
+
+            System.out.println("Payment created");
+        }
+
+        Notification notification = new Notification();
+
+        notification.setUser(booking.getCustomer());
+        notification.setTitle("Booking Confirmed");
+        notification.setMessage(
+                "Your booking with "
+                        + booking.getServiceProvider().getName()
+                        + " has been confirmed."
+        );
+        notification.setCreatedAt(LocalDateTime.now());
+
+        notificationRepository.save(notification);
+
+        System.out.println("Notification saved");
+
+        return booking;
+    }
+
+
 }

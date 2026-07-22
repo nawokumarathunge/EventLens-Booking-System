@@ -1,4 +1,3 @@
-    // Check Login
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
@@ -6,7 +5,6 @@
     window.location.href = "pages/login.html";
 }
 
-    // Customer only
     if (user.role !== "CUSTOMER") {
     alert("Only customers can make bookings!");
     window.location.href = "index.html";
@@ -16,7 +14,6 @@
     let providerId;
 
 
-    // get provider id from URL
     const params = new URLSearchParams(window.location.search);
 
     providerId = params.get("providerId");
@@ -43,7 +40,6 @@
     window.location.href = "providers.html";
 });
 
-    // Load packages
     fetch("http://localhost:8080/api/packages")
     .then(response => response.json())
     .then(packages => {
@@ -94,16 +90,13 @@
 
                 const text = await response.text();
 
-                console.log("Status:", response.status);
-                console.log("Response:", text);
+                if(response.ok){
 
-                if (response.ok) {
-
-                    alert("Booking Created Successfully!");
+                    alert("Booking request sent successfully.\nPlease wait until the provider confirms your booking.");
 
                     window.location.href = "customer_dashboard.html";
 
-                } else {
+                }else{
 
                     alert("Booking Failed : " + text);
 

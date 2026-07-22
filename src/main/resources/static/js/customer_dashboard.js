@@ -2,8 +2,8 @@ function hideAllSections() {
 
     document.getElementById("packagesSection").style.display = "none";
     document.getElementById("bookingsSection").style.display = "none";
-    document.getElementById("notificationsSection").style.display = "none";
     document.getElementById("reviewsSection").style.display = "none";
+    document.getElementById("paymentsSection").style.display = "none";
 
 }
 function showPackages() {
@@ -83,14 +83,6 @@ function showBookings(){
     document.getElementById("bookingsSection").scrollIntoView({
         behavior:"smooth"
     });
-
-}
-
-function showNotifications() {
-
-    hideAllSections();
-
-    document.getElementById("notificationsSection").style.display = "block";
 
 }
 
@@ -184,8 +176,164 @@ function bookPackage(packageId){
 
 }
 
-window.onload = function () {
+function showPayments() {
+
+    hideAllSections();
+
+    document.getElementById("paymentsSection").style.display = "block";
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    fetch("http://localhost:8080/api/payments/customer/" + user.id)
+        .then(res => res.json())
+        .then(payments => {
+
+            console.log(payments);
+
+            const body = document.getElementById("paymentTableBody");
+
+            body.innerHTML = "";
+
+            if (payments.length === 0) {
+
+                body.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            No pending payments.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            payments.forEach(payment => {
+
+                console.log(payment);
+
+                if (payment.status === "PENDING") {
+
+                    body.innerHTML += `
+                        <tr>
+
+                            <td>${payment.booking.id}</td>
+
+                            <td>${payment.booking.serviceProvider.name}</td>
+
+                            <td>${payment.booking.bookingPackage.name}</td>
+
+                            <td>Rs. ${payment.amount}</td>
+
+                            <td>
+                                <button class="btn btn-success"
+                                    onclick="goToPayment(${payment.id})">
+
+                                    Pay Now
+
+                                </button>
+                            </td>
+
+                        </tr>
+                    `;
+                }
+
+            });
+
+        })
+        .catch(err => {
+
+            console.log(err);
+
+            alert("Failed to load payments.");
+
+        });
+
+}
+
+function goToPayment(paymentId){
+
+    window.location.href =
+        "payment.html?paymentId=" + paymentId;
+
+}
+function loadNotifications() {
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    fetch("http://localhost:8080/api/notifications/user/" + user.id)
+        .then(res => res.json())
+        .then(data => {
+
+            const list = document.getElementById("notificationList");
+
+            list.innerHTML =
+                `<li><h6 class="dropdown-header">Notifications</h6></li>`;
+
+            const unread = data.filter(n => !n.isRead).length;
+
+            document.getElementById("notificationCount").innerText = unread;
+
+            if (data.length === 0) {
+
+                list.innerHTML += `
+                    <li>
+                        <span class="dropdown-item-text text-muted">
+                            No notifications
+                        </span>
+                    </li>
+                `;
+
+                return;
+            }
+
+            data.forEach(n => {
+
+                list.innerHTML += `
+
+<li>
+
+<a href="#"
+   class="dropdown-item"
+   onclick="markAsRead(${n.id})">
+
+<div class="fw-bold">${n.title}</div>
+
+<div class="small text-muted"
+     style="white-space:normal;
+            word-wrap:break-word;
+            overflow-wrap:break-word;">
+
+${n.message}
+
+</div>
+
+</a>
+
+</li>
+
+<li><hr class="dropdown-divider"></li>
+
+`;
+
+            });
+
+        });
+
+}
+
+function markAsRead(id){
+
+    fetch("http://localhost:8080/api/notifications/" + id + "/read",{
+        method:"PUT"
+    })
+        .then(() => {
+            loadNotifications();
+        });
+
+}
+
+window.onload=function(){
 
     loadPackages();
+    loadNotifications();
 
-};
+}

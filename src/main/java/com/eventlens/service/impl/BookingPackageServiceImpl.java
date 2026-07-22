@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.eventlens.entity.User;
 import com.eventlens.repository.UserRepository;
-
 import java.util.List;
 
 @Service
@@ -57,4 +56,5 @@ public class BookingPackageServiceImpl implements BookingPackageService {
         return repo.findByServiceProviderId(providerId);
 
     }
+
 }
