@@ -1523,3 +1523,156 @@ footer h3{
 
 }
 
+
+
+/* ======================================================
+   ADMIN DASHBOARD
+====================================================== */
+
+.admin-body{
+    background:#f4f6f9;
+}
+
+/* Navbar */
+
+.navbar{
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Sidebar */
+
+.admin-sidebar{
+    background:#111;
+    min-height:100vh;
+    padding-top:20px;
+}
+
+.admin-sidebar h3{
+    color:#ffc107;
+    font-weight:700;
+}
+
+.admin-sidebar a{
+    display:block;
+    color:#ffffff;
+    text-decoration:none;
+    padding:15px 25px;
+    transition:0.3s;
+    font-size:17px;
+}
+
+.admin-sidebar a:hover{
+    background:#ffc107;
+    color:#111;
+    padding-left:35px;
+}
+
+/* Main Content */
+
+.col-lg-10{
+    padding:30px;
+}
+
+/* Cards */
+
+.admin-card{
+    border:none;
+    border-radius:18px;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.admin-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
+
+.admin-card i{
+    margin-bottom:15px;
+}
+
+.admin-card h3{
+    font-weight:bold;
+}
+
+.admin-card p{
+    color:#666;
+}
+
+/* Sections */
+
+section{
+    margin-bottom:45px;
+}
+
+/* Tables */
+
+.table{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.table thead{
+    background:#ffc107;
+}
+
+.table th{
+    vertical-align:middle;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+/* Buttons */
+
+.btn{
+    border-radius:30px;
+}
+
+.btn-sm{
+    border-radius:20px;
+}
+
+/* Reports Buttons */
+
+#reports .btn{
+    padding:12px;
+    font-weight:600;
+}
+
+/* Recent Activity */
+
+.list-group-item{
+    border:none;
+    border-bottom:1px solid #eee;
+    padding:15px;
+}
+
+/* Footer */
+
+footer{
+    margin-top:40px;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.admin-sidebar{
+    min-height:auto;
+}
+
+.col-lg-2{
+    width:100%;
+}
+
+.col-lg-10{
+    width:100%;
+}
+
+.admin-sidebar a{
+    text-align:center;
+}
+
+}
