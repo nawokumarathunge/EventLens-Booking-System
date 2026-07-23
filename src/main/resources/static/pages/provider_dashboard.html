@@ -32,6 +32,38 @@
         My Profile
       </button>
 
+      <!-- Notification -->
+      <div class="dropdown me-3">
+
+        <button class="btn btn-outline-light position-relative"
+                data-bs-toggle="dropdown"
+                onclick="loadNotifications()">
+
+          <i class="fa-solid fa-bell"></i>
+
+          <span id="notificationCount"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
+            0
+
+        </span>
+
+        </button>
+
+        <ul id="notificationList"
+            class="dropdown-menu dropdown-menu-end shadow"
+            style="width:350px; max-height:400px; overflow-y:auto;">
+
+          <li>
+            <h6 class="dropdown-header">
+              Notifications
+            </h6>
+          </li>
+
+        </ul>
+
+      </div>
+
       <button class="btn btn-danger btn-sm"
               onclick="logout()">
         Logout
@@ -63,13 +95,13 @@
 
 <!-- ================= DASHBOARD CARDS ================= -->
 
-<div class="container mt-4">
+<div class="container mt-5">
 
-  <div class="row g-4">
+  <div class="row g-4 justify-content-center">
 
     <!-- Profile -->
-    <div class="col-lg">
-      <div class="card dashboard-card h-100 text-center p-4">
+    <div class="col-lg col-md-6">
+      <div class="dashboard-card profile-card">
 
         <i class="fa-solid fa-user fa-3x text-warning mb-3"></i>
 
@@ -86,9 +118,8 @@
     </div>
 
     <!-- Packages -->
-    <div class="col-lg">
-      <div class="card dashboard-card h-100 text-center p-4">
-
+    <div class="col-lg col-md-6">
+      <div class="dashboard-card package-card">
         <i class="fa-solid fa-box-open fa-3x text-success mb-3"></i>
 
         <h5>My Packages</h5>
@@ -104,8 +135,8 @@
     </div>
 
     <!-- Booking Requests -->
-    <div class="col-lg">
-      <div class="card dashboard-card h-100 text-center p-4">
+    <div class="col-lg col-md-6">
+      <div class="dashboard-card booking-card">
 
         <i class="fa-solid fa-calendar-check fa-3x text-primary mb-3"></i>
 
@@ -122,8 +153,8 @@
     </div>
 
     <!-- Dashboard Summary -->
-    <div class="col-lg">
-      <div class="card dashboard-card h-100 text-center p-4">
+    <div class="col-lg col-md-6">
+      <div class="dashboard-card summary-card">
 
         <i class="fa-solid fa-chart-line fa-3x text-info mb-3"></i>
 
@@ -140,8 +171,8 @@
     </div>
 
     <!-- Reviews -->
-    <div class="col-lg">
-      <div class="card dashboard-card h-100 text-center p-4">
+    <div class="col-lg col-md-6">
+      <div class="dashboard-card review-card">
 
         <i class="fa-solid fa-star fa-3x text-danger mb-3"></i>
 
@@ -329,18 +360,29 @@
   <div class="card shadow border-0">
 
     <div class="card-header bg-danger text-white">
-
       <h4>Customer Reviews</h4>
-
     </div>
 
-    <div class="card-body text-center">
+    <div class="card-body">
 
-      <i class="fa-solid fa-star fa-4x text-warning mb-3"></i>
+      <table class="table table-bordered">
 
-      <h5>No Reviews Yet</h5>
+        <thead>
 
-      <p>Your customer reviews will appear here.</p>
+        <tr>
+          <th>Customer</th>
+          <th>Rating</th>
+          <th>Comment</th>
+          <th>Event</th>
+        </tr>
+
+        </thead>
+
+        <tbody id="reviewsBody">
+
+        </tbody>
+
+      </table>
 
     </div>
 

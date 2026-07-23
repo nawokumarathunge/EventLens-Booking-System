@@ -395,7 +395,7 @@ function showProfile(){
 function showPackages(){
     hideAllSections();
     document.getElementById("packagesSection").style.display="block";
-    section.scrollIntoView({
+    document.getElementById("packagesSection").scrollIntoView({
         behavior: "smooth"
     });
 }
@@ -403,7 +403,7 @@ function showPackages(){
 function showBookings(){
     hideAllSections();
     document.getElementById("bookingsSection").style.display="block";
-    section.scrollIntoView({
+    document.getElementById("bookingsSection").scrollIntoView({
         behavior: "smooth"
     });
 }
@@ -411,18 +411,154 @@ function showBookings(){
 function showSummary(){
     hideAllSections();
     document.getElementById("summarySection").style.display="block";
-    section.scrollIntoView({
+    document.getElementById("summarySection").scrollIntoView({
         behavior: "smooth"
     });
 }
 
-function showReviews(){
+function showReviews() {
+
+    console.log("reviewsBody =", document.getElementById("reviewsBody"));
+
     hideAllSections();
-    document.getElementById("reviewsSection").style.display="block";
-    section.scrollIntoView({
+
+    document.getElementById("reviewsSection").style.display = "block";
+
+    const provider = JSON.parse(localStorage.getItem("user"));
+
+    fetch("http://localhost:8080/api/reviews/provider/" + provider.id)
+        .then(res => res.json())
+        .then(reviews => {
+
+            const body = document.getElementById("reviewsBody");
+
+            console.log(reviews);
+
+            body.innerHTML = "";
+
+            if (reviews.length === 0) {
+
+                body.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No Reviews Yet
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            reviews.forEach(review => {
+
+                console.log(review);
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+        <td>${review.customer?.name}</td>
+        <td>${review.rating} ⭐</td>
+        <td>${review.comment}</td>
+        <td>${review.booking?.eventType}</td>
+    `;
+
+                body.appendChild(row);
+
+            });
+
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Failed to load reviews");
+        });
+
+    document.getElementById("reviewsSection").scrollIntoView({
         behavior: "smooth"
     });
+
 }
 
 
 document.getElementById("navProviderName").innerText = user.name;
+
+function loadNotifications() {
+
+    const provider = JSON.parse(localStorage.getItem("user"));
+
+    fetch("http://localhost:8080/api/notifications/user/" + provider.id)
+
+        .then(res => res.json())
+
+        .then(data => {
+
+            const list = document.getElementById("notificationList");
+
+            list.innerHTML =
+                `<li><h6 class="dropdown-header">Notifications</h6></li>`;
+
+            const unread = data.filter(n => !n.isRead).length;
+
+            document.getElementById("notificationCount").innerText = unread;
+
+            if (data.length === 0) {
+
+                list.innerHTML += `
+                    <li>
+                        <span class="dropdown-item-text text-muted">
+                            No Notifications
+                        </span>
+                    </li>
+                `;
+
+                return;
+            }
+
+            data.forEach(n => {
+
+                list.innerHTML += `
+
+<li>
+
+<a href="#"
+   class="dropdown-item"
+   onclick="markAsRead(${n.id})">
+
+<div class="fw-bold">${n.title}</div>
+
+<div class="small text-muted"
+     style="white-space:normal">
+
+${n.message}
+
+</div>
+
+</a>
+
+</li>
+
+<li><hr class="dropdown-divider"></li>
+
+`;
+
+            });
+
+        });
+
+}
+
+function markAsRead(id){
+
+    fetch("http://localhost:8080/api/notifications/" + id + "/read",{
+
+        method:"PUT"
+
+    })
+
+        .then(()=>{
+
+            loadNotifications();
+
+        });
+
+}
+
+loadNotifications();

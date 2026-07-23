@@ -2,7 +2,6 @@ function hideAllSections() {
 
     document.getElementById("packagesSection").style.display = "none";
     document.getElementById("bookingsSection").style.display = "none";
-    document.getElementById("reviewsSection").style.display = "none";
     document.getElementById("paymentsSection").style.display = "none";
 
 }
@@ -13,6 +12,9 @@ function showPackages() {
     document.getElementById("packagesSection").style.display = "block";
 
     loadPackages();
+    document.getElementById("packagesSection").scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 function showBookings(){
@@ -20,6 +22,7 @@ function showBookings(){
     hideAllSections();
 
     document.getElementById("bookingsSection").style.display = "block";
+
 
     let user = JSON.parse(localStorage.getItem("user"));
 
@@ -66,15 +69,33 @@ function showBookings(){
 
             bookings.forEach(booking => {
 
+                let action = "";
+
+                if (booking.status === "COMPLETED") {
+
+                    action = `
+        <a href="review.html?bookingId=${booking.id}"
+           class="btn btn-warning btn-sm">
+           Write Review
+        </a>
+    `;
+
+                } else {
+
+                    action = "-";
+
+                }
+
                 body.innerHTML += `
-                <tr>
-                    <td>${booking.id}</td>
-                    <td>${booking.serviceProvider.name}</td>
-                    <td>${booking.eventType}</td>
-                    <td>${booking.eventDate}</td>
-                    <td>${booking.status}</td>
-                </tr>
-            `;
+<tr>
+    <td>${booking.id}</td>
+    <td>${booking.serviceProvider.name}</td>
+    <td>${booking.eventType}</td>
+    <td>${booking.eventDate}</td>
+    <td>${booking.status}</td>
+    <td>${action}</td>
+</tr>
+`;
 
             });
 
@@ -86,13 +107,6 @@ function showBookings(){
 
 }
 
-function showReviews() {
-
-    hideAllSections();
-
-    document.getElementById("reviewsSection").style.display = "block";
-
-}
 
 let user = JSON.parse(
     localStorage.getItem("user")
@@ -181,6 +195,9 @@ function showPayments() {
     hideAllSections();
 
     document.getElementById("paymentsSection").style.display = "block";
+    document.getElementById("paymentsSection").scrollIntoView({
+        behavior:"smooth"
+    });
 
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -224,7 +241,7 @@ function showPayments() {
                             <td>Rs. ${payment.amount}</td>
 
                             <td>
-                                <button class="btn btn-success"
+                                <button class="btn btn-secondary"
                                     onclick="goToPayment(${payment.id})">
 
                                     Pay Now
@@ -337,3 +354,5 @@ window.onload=function(){
     loadNotifications();
 
 }
+
+

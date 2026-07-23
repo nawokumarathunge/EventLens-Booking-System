@@ -1676,3 +1676,165 @@ footer{
 }
 
 }
+
+.dashboard-card{
+    background:#fff;
+    border-radius:20px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.35s;
+    cursor:pointer;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.dashboard-card i{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.dashboard-card h3{
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.dashboard-card p{
+    color:#6c757d;
+    min-height:70px;
+    margin-bottom:25px;
+}
+
+.dashboard-card .btn{
+    width:100%;
+    border-radius:30px;
+    font-weight:600;
+}
+
+.profile-card i{
+    color:#0d6efd;
+}
+
+.package-card i{
+    color:#ffc107;
+}
+
+.booking-card i{
+    color:#198754;
+}
+
+.payment-card i{
+    color:#6c757d;
+}
+
+.dashboard-card{
+    background:#fff;
+    border-radius:22px;
+    padding:35px 25px;
+    text-align:center;
+    height:100%;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    transition:all .35s ease;
+
+}
+
+.dashboard-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.dashboard-card i{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.dashboard-card h3{
+    font-size:1.7rem;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.dashboard-card p{
+    color:#6c757d;
+    min-height:75px;
+    margin-bottom:25px;
+    line-height:1.7;
+}
+
+.dashboard-card .btn{
+    width:100%;
+    border-radius:30px;
+    font-weight:600;
+    padding:10px;
+}
+
+.profile-card i{
+    color:#ffc107;
+}
+
+.package-card i{
+    color:#198754;
+}
+
+.booking-card i{
+    color:#0d6efd;
+}
+
+.summary-card i{
+    color:#0dcaf0;
+}
+
+.review-card i{
+    color:#dc3545;
+}
+
+.profile-card:hover{
+    border-top:5px solid #ffc107;
+}
+
+.package-card:hover{
+    border-top:5px solid #198754;
+}
+
+.booking-card:hover{
+    border-top:5px solid #0d6efd;
+}
+
+.summary-card:hover{
+    border-top:5px solid #0dcaf0;
+}
+
+.review-card:hover{
+    border-top:5px solid #dc3545;
+}
+
+.welcome-card{
+    background:linear-gradient(135deg,#ffffff,#f8f9fa);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.welcome-card h1{
+    font-size:2.4rem;
+    font-weight:800;
+}
+
+.welcome-card span{
+    color:#ffb400;
+}
+
+.welcome-card p{
+    color:#6c757d;
+    font-size:18px;
+}
+
+footer{
+    background:#212529;
+    color:#fff;
+    padding:25px;
+    margin-top:70px;
+}

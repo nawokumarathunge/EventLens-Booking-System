@@ -61,7 +61,28 @@ public class BookingServiceImpl implements BookingService {
 
         booking.setStatus(BookingStatus.PENDING);
 
-        return bookingRepository.save(booking);
+        Booking savedBooking = bookingRepository.save(booking);
+
+        Notification notification = new Notification();
+
+        notification.setUser(savedBooking.getServiceProvider());
+
+        notification.setTitle("📅 New Booking Request");
+
+        notification.setMessage(
+                savedBooking.getCustomer().getName()
+                        + " has requested a "
+                        + savedBooking.getEventType()
+                        + " booking."
+        );
+
+        notification.setCreatedAt(LocalDateTime.now());
+
+        notification.setIsRead(false);
+
+        notificationRepository.save(notification);
+
+        return savedBooking;
     }
 
     @Override
