@@ -29,4 +29,6 @@ public interface BookingService {
 
     List<Booking> getBookingsByProvider(Long providerId);
 
+    long getBookingCount();
+
 }

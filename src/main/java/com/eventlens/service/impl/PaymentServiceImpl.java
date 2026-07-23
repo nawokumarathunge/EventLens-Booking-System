@@ -96,4 +96,13 @@ public class PaymentServiceImpl implements PaymentService {
 
     }
 
+    @Override
+    public Double getRevenue() {
+
+        Double revenue = paymentRepository.getTotalRevenue();
+
+        return revenue == null ? 0.0 : revenue;
+    }
+
+
 }

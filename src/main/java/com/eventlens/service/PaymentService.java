@@ -19,4 +19,6 @@ public interface PaymentService {
 
     Payment completePayment(Long id, PaymentRequest request);
 
+    Double getRevenue();
+
 }

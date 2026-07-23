@@ -59,5 +59,10 @@ public class PaymentController {
         return paymentService.completePayment(id, request);
 
     }
+    @GetMapping("/revenue")
+    public Double getRevenue() {
+        return paymentService.getRevenue();
+    }
+
 
 }

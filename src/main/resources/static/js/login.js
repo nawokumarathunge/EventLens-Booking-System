@@ -52,6 +52,10 @@
 
                 window.location.href="provider_dashboard.html";
 
+            }else if(user.role==="ADMIN"){
+
+                window.location.href="admin_dashboard.html";
+
             }
 
         })

@@ -12,7 +12,7 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/style.css">
 
 </head>
 
@@ -24,7 +24,7 @@
 
 <div class="container-fluid">
 
-<a class="navbar-brand fw-bold" href="index.html">
+<a class="navbar-brand fw-bold" href="../index.html">
 
 <i class="fa-solid fa-camera text-warning me-2"></i>
 
@@ -160,7 +160,7 @@ Dashboard Summary
 
 <i class="fa-solid fa-users fa-3x text-primary mb-3"></i>
 
-<h3>245</h3>
+    <h3 id="totalCustomers"></h3>
 
 <p>Total Customers</p>
 
@@ -178,7 +178,7 @@ Dashboard Summary
 
 <i class="fa-solid fa-camera fa-3x text-warning mb-3"></i>
 
-<h3>68</h3>
+    <h3 id="totalProviders"></h3>
 
 <p>Total Providers</p>
 
@@ -196,9 +196,9 @@ Dashboard Summary
 
 <i class="fa-solid fa-calendar-check fa-3x text-success mb-3"></i>
 
-<h3>421</h3>
+    <h3 id="totalBookings"></h3>
+    <p>Total Bookings</p>
 
-<p>Total Bookings</p>
 
 </div>
 
@@ -214,7 +214,7 @@ Dashboard Summary
 
 <i class="fa-solid fa-money-bill-wave fa-3x text-danger mb-3"></i>
 
-<h3>Rs.2.4M</h3>
+    <h3 id="totalRevenue"></h3>
 
 <p>Total Revenue</p>
 
@@ -232,7 +232,7 @@ Dashboard Summary
 
 <i class="fa-solid fa-star fa-3x text-warning mb-3"></i>
 
-<h3>192</h3>
+    <h3 id="totalReviews"></h3>
 
 <p>Total Reviews</p>
 
@@ -250,7 +250,7 @@ Dashboard Summary
 
 <i class="fa-solid fa-credit-card fa-3x text-info mb-3"></i>
 
-<h3>14</h3>
+    <h3 id="pendingPayments"></h3>
 
 <p>Pending Payments</p>
 
@@ -286,17 +286,17 @@ Manage Customers
 
 <div class="d-flex justify-content-between mb-3">
 
-<input type="text"
-class="form-control w-50"
-placeholder="Search Customer...">
+    <input
+            type="text"
+            id="searchCustomer"
+            class="form-control w-50"
+            placeholder="Search Customer..."
+            onkeyup="searchCustomer()">
 
-<button class="btn btn-warning">
-
-<i class="fa fa-user-plus"></i>
-
-Add Customer
-
-</button>
+    <button class="btn btn-warning" onclick="showAddCustomerModal()">
+        <i class="fa fa-user-plus"></i>
+        Add Customer
+    </button>
 
 </div>
 
@@ -317,83 +317,7 @@ Add Customer
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>C001</td>
-
-<td>Nick Perera</td>
-
-<td>nick@gmail.com</td>
-
-<td>0771234567</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Active
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-sm btn-primary">
-
-Edit
-
-</button>
-
-<button class="btn btn-sm btn-danger">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>C002</td>
-
-<td>John Silva</td>
-
-<td>john@gmail.com</td>
-
-<td>0714567890</td>
-
-<td>
-
-<span class="badge bg-secondary">
-
-Inactive
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-sm btn-primary">
-
-Edit
-
-</button>
-
-<button class="btn btn-sm btn-danger">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
+    <tbody id="customersBody">
 
 </tbody>
 
@@ -427,18 +351,17 @@ Manage Providers
 
 <div class="d-flex justify-content-between mb-3">
 
-<input
-type="text"
-class="form-control w-50"
-placeholder="Search Provider...">
+    <input
+            type="text"
+            id="searchProvider"
+            class="form-control w-50"
+            placeholder="Search Provider..."
+            onkeyup="searchProvider()">
 
-<button class="btn btn-warning">
-
-<i class="fa fa-plus"></i>
-
-Add Provider
-
-</button>
+    <button class="btn btn-warning" onclick="showAddProviderModal()">
+        <i class="fa fa-plus"></i>
+        Add Provider
+    </button>
 
 </div>
 
@@ -464,91 +387,7 @@ Add Provider
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>P001</td>
-
-<td>John Photography</td>
-
-<td>Wedding</td>
-
-<td>
-
-★★★★☆
-
-</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Verified
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-primary btn-sm">
-
-View
-
-</button>
-
-<button class="btn btn-danger btn-sm">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>P002</td>
-
-<td>Elite Studio</td>
-
-<td>Videography</td>
-
-<td>
-
-★★★★★
-
-</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
-Pending
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-success btn-sm">
-
-Approve
-
-</button>
-
-<button class="btn btn-danger btn-sm">
-
-Reject
-
-</button>
-
-</td>
-
-</tr>
+    <tbody id="providersBody">
 
 </tbody>
 
@@ -582,18 +421,16 @@ Manage Packages
 
 <div class="d-flex justify-content-between mb-3">
 
-<input
-type="text"
-class="form-control w-50"
-placeholder="Search Package...">
+    <input
+            type="text"
+            id="searchPackage"
+            class="form-control w-50"
+            placeholder="Search Package..."
+            onkeyup="searchPackage()">
 
-<button class="btn btn-warning">
-
-<i class="fa fa-plus"></i>
-
-New Package
-
-</button>
+    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#packageModal">
+        <i class="fa fa-plus"></i> New Package
+    </button>
 
 </div>
 
@@ -617,63 +454,7 @@ New Package
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>PK001</td>
-
-<td>Basic Package</td>
-
-<td>Rs.15,000</td>
-
-<td>2 Hours</td>
-
-<td>
-
-<button class="btn btn-primary btn-sm">
-
-Edit
-
-</button>
-
-<button class="btn btn-danger btn-sm">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>PK002</td>
-
-<td>Premium Package</td>
-
-<td>Rs.60,000</td>
-
-<td>Full Day</td>
-
-<td>
-
-<button class="btn btn-primary btn-sm">
-
-Edit
-
-</button>
-
-<button class="btn btn-danger btn-sm">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
+    <tbody id="packagesBody">
 
 </tbody>
 
@@ -705,6 +486,15 @@ Manage Bookings
 
 <div class="card-body">
 
+    <div class="mb-3">
+        <input
+                type="text"
+                id="searchBooking"
+                class="form-control w-50"
+                placeholder="Search Booking..."
+                onkeyup="searchBooking()">
+    </div>
+
 <table class="table table-hover">
 
 <thead class="table-warning">
@@ -722,77 +512,7 @@ Manage Bookings
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>B001</td>
-
-<td>Nick Perera</td>
-
-<td>John Photography</td>
-
-<td>15 Aug 2026</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
-Pending
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-success btn-sm">
-
-Approve
-
-</button>
-
-<button class="btn btn-danger btn-sm">
-
-Reject
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>B002</td>
-
-<td>John Silva</td>
-
-<td>Elite Studio</td>
-
-<td>20 Aug 2026</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Approved
-
-</span>
-
-</td>
-
-<td>
-
-<button class="btn btn-primary btn-sm">
-
-View
-
-</button>
-
-</td>
-
-</tr>
+    <tbody id="bookingsBody">
 
 </tbody>
 
@@ -824,67 +544,33 @@ Payments
 
 <div class="card-body">
 
+    <div class="mb-3">
+        <input
+                type="text"
+                id="searchPayment"
+                class="form-control w-50"
+                placeholder="Search Payment..."
+                onkeyup="searchPayment()">
+    </div>
+
 <table class="table table-hover">
 
 <thead class="table-warning">
 
 <tr>
 
-<th>Payment ID</th>
-<th>Customer</th>
-<th>Amount</th>
-<th>Method</th>
-<th>Status</th>
+    <th>Payment ID</th>
+    <th>Customer</th>
+    <th>Amount</th>
+    <th>Method</th>
+    <th>Status</th>
+    <th>Action</th>
 
 </tr>
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>PAY001</td>
-
-<td>Nick Perera</td>
-
-<td>Rs.15,000</td>
-
-<td>Card</td>
-
-<td>
-
-<span class="badge bg-success">
-
-Paid
-
-</span>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>PAY002</td>
-
-<td>John Silva</td>
-
-<td>Rs.35,000</td>
-
-<td>Cash</td>
-
-<td>
-
-<span class="badge bg-warning text-dark">
-
-Pending
-
-</span>
-
-</td>
-
-</tr>
+    <tbody id="paymentsBody">
 
 </tbody>
 
@@ -916,6 +602,15 @@ Reviews
 
 <div class="card-body">
 
+    <div class="mb-3">
+        <input
+                type="text"
+                id="searchReview"
+                class="form-control w-50"
+                placeholder="Search Review..."
+                onkeyup="searchReview()">
+    </div>
+
 <table class="table table-hover">
 
 <thead class="table-warning">
@@ -936,51 +631,7 @@ Reviews
 
 </thead>
 
-<tbody>
-
-<tr>
-
-<td>Nick</td>
-
-<td>John Photography</td>
-
-<td>★★★★★</td>
-
-<td>Excellent service!</td>
-
-<td>
-
-<button class="btn btn-danger btn-sm">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>John</td>
-
-<td>Elite Studio</td>
-
-<td>★★★★☆</td>
-
-<td>Very professional.</td>
-
-<td>
-
-<button class="btn btn-danger btn-sm">
-
-Delete
-
-</button>
-
-</td>
-
-</tr>
+    <tbody id="reviewsBody">
 
 </tbody>
 
@@ -1117,8 +768,256 @@ Recent Activities
 © 2026 EventLens | Admin Dashboard
 
 </footer>
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title">Edit User</h5>
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="editUserId">
+
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text"
+                           id="editName"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email"
+                           id="editEmail"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Phone</label>
+                    <input type="text"
+                           id="editPhone"
+                           class="form-control">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button class="btn btn-warning"
+                        onclick="updateUser()">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="addUserTitle">Add User</h5>
+                <button class="btn-close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="userRole">
+
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text"
+                           id="addName"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email"
+                           id="addEmail"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Phone</label>
+                    <input type="text"
+                           id="addPhone"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input type="password"
+                           id="addPassword"
+                           class="form-control">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button class="btn btn-warning"
+                        onclick="saveUser()">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="packageModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title">Package</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" id="packageId">
+
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input type="text" id="packageName" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Price</label>
+                    <input type="number" id="packagePrice" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label>Hours</label>
+                    <input type="number" id="packageHours" class="form-control">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Cancel
+                </button>
+
+                <button class="btn btn-warning"
+                        onclick="savePackage()">
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"
+     id="paymentModal"
+     tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-dark text-white">
+
+                <h5 class="modal-title">
+                    Payment Details
+                </h5>
+
+                <button
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Payment ID</th>
+                        <td id="mPaymentId"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Customer</th>
+                        <td id="mCustomer"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Booking ID</th>
+                        <td id="mBooking"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Amount</th>
+                        <td id="mAmount"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Method</th>
+                        <td id="mMethod"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Status</th>
+                        <td id="mStatus"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Payment Date</th>
+                        <td id="mDate"></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/admin_dashboard.js"></script>
 
 </body>
 

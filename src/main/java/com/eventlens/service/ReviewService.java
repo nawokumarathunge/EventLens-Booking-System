@@ -13,4 +13,10 @@ public interface ReviewService {
 
     List<Review> getReviewsByCustomer(Long customerId);
 
+    long getReviewCount();
+
+    List<Review> getAllReviews();
+
+    void deleteReview(Long id);
+
 }

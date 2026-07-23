@@ -93,4 +93,9 @@ public class BookingController {
 
     }
 
+    @GetMapping("/count")
+    public long getBookingCount() {
+        return bookingService.getBookingCount();
+    }
+
 }

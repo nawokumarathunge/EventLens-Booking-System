@@ -101,4 +101,19 @@ public class UserService {
         return providers;
     }
 
+    public long getCustomerCount() {
+        return userRepository.countByRole(Role.CUSTOMER);
+    }
+
+    public long getProviderCount() {
+        return userRepository.countByRole(Role.PHOTOGRAPHER)
+                + userRepository.countByRole(Role.VIDEOGRAPHER);
+    }
+    public List<User> searchCustomers(String keyword) {
+        return userRepository.findByRoleAndNameContainingIgnoreCase(
+                Role.CUSTOMER,
+                keyword
+        );
+    }
+
 }

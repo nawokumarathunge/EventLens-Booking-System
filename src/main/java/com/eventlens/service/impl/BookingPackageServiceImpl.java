@@ -2,6 +2,7 @@ package com.eventlens.service.impl;
 
 import com.eventlens.entity.BookingPackage;
 import com.eventlens.repository.BookingPackageRepository;
+import com.eventlens.repository.BookingRepository;
 import com.eventlens.service.BookingPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,16 +46,25 @@ public class BookingPackageServiceImpl implements BookingPackageService {
         return repo.save(p);
     }
 
-    @Override
-    public void delete(Long id){
-        repo.deleteById(id);
-    }
 
     @Override
     public List<BookingPackage> getPackagesByProvider(Long providerId) {
 
         return repo.findByServiceProviderId(providerId);
 
+    }
+
+    @Autowired
+    private BookingRepository bookingRepository;
+
+    @Override
+    public void delete(Long id) {
+
+        if (bookingRepository.existsByBookingPackageId(id)) {
+            throw new RuntimeException("Package cannot be deleted because it is used in bookings.");
+        }
+
+        repo.deleteById(id);
     }
 
 }

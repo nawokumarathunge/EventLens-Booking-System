@@ -84,4 +84,22 @@ public class ReviewServiceImpl implements ReviewService {
 
     }
 
+    @Override
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
+    }
+
+    @Override
+    public long getReviewCount() {
+        return reviewRepository.count();
+    }
+
+    @Override
+    public void deleteReview(Long id) {
+        if (!reviewRepository.existsById(id)) {
+            throw new RuntimeException("Review not found");
+        }
+        reviewRepository.deleteById(id);
+    }
+
 }

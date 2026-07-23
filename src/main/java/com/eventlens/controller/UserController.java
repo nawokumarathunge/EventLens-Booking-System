@@ -3,10 +3,13 @@ package com.eventlens.controller;
 import com.eventlens.dto.RegisterRequest;
 import com.eventlens.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.eventlens.dto.LoginRequest;
 import java.util.List;
 import com.eventlens.entity.User;
+import com.eventlens.entity.Review;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -58,5 +61,23 @@ public class UserController {
     public List<User> getProviders() {
         return userService.getProviders();
     }
+
+    @GetMapping("/count/customers")
+    public long getCustomerCount() {
+        return userService.getCustomerCount();
+    }
+
+    @GetMapping("/count/providers")
+    public long getProviderCount() {
+        return userService.getProviderCount();
+    }
+
+    @GetMapping("/search")
+    public List<User> searchCustomers(@RequestParam String keyword) {
+        return userService.searchCustomers(keyword);
+    }
+
+
+
 
 }
