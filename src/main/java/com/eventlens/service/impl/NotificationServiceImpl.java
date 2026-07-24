@@ -40,4 +40,12 @@ public class NotificationServiceImpl implements NotificationService {
 
     }
 
+    @Override
+    public List<Notification> getRecentActivities() {
+
+        return notificationRepository
+                .findTop10ByOrderByCreatedAtDesc();
+
+    }
+
 }

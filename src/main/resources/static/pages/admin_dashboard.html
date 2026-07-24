@@ -70,69 +70,122 @@ Menu
 
 </h3>
 
-<a href="#dashboard">
+    <ul class="nav flex-column">
 
-<i class="fa fa-chart-line me-2"></i>
+        <li class="nav-item">
+            <a class="nav-link menu-link active"
+               href="#"
+               onclick="showSection('dashboard',this)">
 
-Dashboard
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
 
-</a>
+            </a>
+        </li>
 
-<a href="#customers">
+        <li class="nav-item">
 
-<i class="fa fa-users me-2"></i>
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('customers',this)">
 
-Customers
+                <i class="fa-solid fa-users"></i>
 
-</a>
+                Customers
 
-<a href="#providers">
+            </a>
 
-<i class="fa fa-camera me-2"></i>
+        </li>
 
-Providers
+        <li class="nav-item">
 
-</a>
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('providers',this)">
+                <i class="fa-solid fa-camera"></i>
+                Providers
 
-<a href="#packages">
+            </a>
 
-<i class="fa fa-box me-2"></i>
+        </li>
 
-Packages
+        <li class="nav-item">
 
-</a>
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('packages',this)">
+                <i class="fa-solid fa-box"></i>
+                Packages
 
-<a href="#bookings">
+            </a>
 
-<i class="fa fa-calendar-check me-2"></i>
+        </li>
 
-Bookings
+        <li class="nav-item">
 
-</a>
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('bookings',this)">
+                <i class="fa-solid fa-calendar-check"></i>
+                Bookings
 
-<a href="#payments">
+            </a>
 
-<i class="fa fa-credit-card me-2"></i>
+        </li>
 
-Payments
+        <li class="nav-item">
 
-</a>
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('payments',this)">
+                <i class="fa-solid fa-credit-card"></i>
 
-<a href="#reviews">
+                Payments
 
-<i class="fa fa-star me-2"></i>
+            </a>
 
-Reviews
+        </li>
 
-</a>
+        <li class="nav-item">
 
-<a href="#reports">
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('reviews',this)">
+                <i class="fa-solid fa-star"></i>
 
-<i class="fa fa-file-lines me-2"></i>
+                Reviews
 
-Reports
+            </a>
 
-</a>
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('reports',this)">
+                <i class="fa-solid fa-file-pdf"></i>
+                Reports
+
+            </a>
+
+        </li>
+
+        <li class="nav-item">
+
+            <a class="nav-link menu-link"
+               href="#"
+               onclick="showSection('activities',this)">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                Recent Activities
+
+            </a>
+
+        </li>
+
+    </ul>
 
 </div>
 
@@ -142,7 +195,7 @@ Reports
 
 <div class="col-lg-10 p-4">
 
-<section id="dashboard">
+    <section id="dashboard" class="dashboard-section">
 
 <h2 class="fw-bold mb-4">
 
@@ -266,13 +319,13 @@ Dashboard Summary
 
 <!-- ================= MANAGE CUSTOMERS ================= -->
 
-<section id="customers" class="mt-5">
+<section id="customers" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3 class="mb-0">
+<h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-users text-warning me-2"></i>
 
@@ -331,13 +384,13 @@ Manage Customers
 
 <!-- ================= MANAGE PROVIDERS ================= -->
 
-<section id="providers" class="mt-5">
+<section id="providers" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3 class="mb-0">
+<h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-camera text-warning me-2"></i>
 
@@ -401,13 +454,13 @@ Manage Providers
 
 <!-- ================= MANAGE PACKAGES ================= -->
 
-<section id="packages" class="mt-5">
+<section id="packages" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3 class="mb-0">
+<h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-box text-warning me-2"></i>
 
@@ -434,25 +487,16 @@ Manage Packages
 
 </div>
 
-<table class="table table-hover">
-
-<thead class="table-warning">
-
-<tr>
-
-<th>ID</th>
-
-<th>Package</th>
-
-<th>Price</th>
-
-<th>Duration</th>
-
-<th>Action</th>
-
-</tr>
-
-</thead>
+    <table class="table table-hover">
+        <thead class="table-warning">
+        <tr>
+            <th>ID</th>
+            <th>Package</th>
+            <th>Price</th>
+            <th>Duration</th>
+            <th class="text-center">Action</th>
+        </tr>
+        </thead>
 
     <tbody id="packagesBody">
 
@@ -468,13 +512,13 @@ Manage Packages
 
 <!-- ================= MANAGE BOOKINGS ================= -->
 
-<section id="bookings" class="mt-5">
+<section id="bookings" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3 class="mb-0">
+<h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-calendar-check text-warning me-2"></i>
 
@@ -526,13 +570,13 @@ Manage Bookings
 
 <!-- ================= PAYMENTS ================= -->
 
-<section id="payments" class="mt-5">
+<section id="payments" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3>
+<h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-credit-card text-warning me-2"></i>
 
@@ -584,13 +628,13 @@ Payments
 
 <!-- ================= REVIEWS ================= -->
 
-<section id="reviews" class="mt-5">
+<section id="reviews" class="dashboard-section mt-5">
 
 <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+<div class="card-header bg-dark">
 
-<h3>
+    <h3 class="mb-0 text-white">
 
 <i class="fa-solid fa-star text-warning me-2"></i>
 
@@ -643,119 +687,227 @@ Reviews
 
 </section>
 
-<!-- ================= REPORTS ================= -->
+    <!-- ================= REPORTS ================= -->
 
-<section id="reports" class="mt-5">
+    <section id="reports" class="dashboard-section mt-5">
 
-<div class="card shadow border-0">
+        <div class="card shadow border-0">
 
-<div class="card-header bg-dark text-white">
+            <div class="card-header bg-dark text-white">
 
-<h3>
+                <h3 class="mb-0">
+                    <i class="fa-solid fa-file-lines text-warning me-2"></i>
+                    Reports
+                </h3>
 
-<i class="fa-solid fa-file-lines text-warning me-2"></i>
+            </div>
 
-Reports
+            <div class="card-body">
 
-</h3>
+                <div class="row g-4">
 
-</div>
+                    <!-- Booking Report -->
 
-<div class="card-body">
+                    <div class="col-md-4">
 
-<div class="row text-center">
+                        <div class="card border-warning shadow-sm h-100">
 
-<div class="col-md-4">
+                            <div class="card-body text-center">
 
-<button class="btn btn-outline-warning w-100 mb-3">
+                                <i class="fa-solid fa-calendar-check fa-3x text-warning mb-3"></i>
 
-Booking Report
+                                <h5>Booking Report</h5>
 
-</button>
+                                <p class="text-muted">
+                                    View or download all booking details.
+                                </p>
 
-</div>
+                                <div class="d-flex justify-content-center gap-2">
 
-<div class="col-md-4">
+                                    <button
+                                            class="btn btn-outline-warning"
+                                            onclick="viewBookingReport()">
 
-<button class="btn btn-outline-warning w-100 mb-3">
+                                        <i class="fa-solid fa-eye"></i>
 
-Revenue Report
+                                        View
 
-</button>
+                                    </button>
 
-</div>
+                                    <button class="btn btn-outline-dark"
+                                            onclick="printBookingReport()">
 
-<div class="col-md-4">
+                                        <i class="fa-solid fa-print"></i>
+                                        Print
 
-<button class="btn btn-outline-warning w-100 mb-3">
+                                    </button>
 
-Customer Report
 
-</button>
+                                    <button
+                                            class="btn btn-warning"
+                                            onclick="downloadBookingReport()">
 
-</div>
+                                        <i class="fa-solid fa-download"></i>
 
-</div>
+                                        Download
 
-</div>
+                                    </button>
 
-</div>
+                                </div>
 
-</section>
+                            </div>
 
-<!-- ================= RECENT ACTIVITY ================= -->
+                        </div>
 
-<section class="mt-5">
+                    </div>
 
-<div class="card shadow border-0">
+                    <!-- Revenue Report -->
 
-<div class="card-header bg-dark text-white">
+                    <div class="col-md-4">
 
-<h3>
+                        <div class="card border-success shadow-sm h-100">
 
-<i class="fa-solid fa-clock-rotate-left text-warning me-2"></i>
+                            <div class="card-body text-center">
 
-Recent Activities
+                                <i class="fa-solid fa-money-bill-wave fa-3x text-success mb-3"></i>
 
-</h3>
+                                <h5>Revenue Report</h5>
 
-</div>
+                                <p class="text-muted">
+                                    Revenue and payment summary.
+                                </p>
 
-<div class="card-body">
+                                <div class="d-flex justify-content-center gap-2">
 
-<ul class="list-group">
+                                    <button
+                                            class="btn btn-outline-success"
+                                            onclick="viewRevenueReport()">
 
-<li class="list-group-item">
+                                        <i class="fa-solid fa-eye"></i>
 
-✅ New booking created by Nick Perera
+                                        View
 
-</li>
+                                    </button>
+                                    <button class="btn btn-outline-dark"
+                                            onclick="printRevenueReport()">
 
-<li class="list-group-item">
+                                        <i class="fa-solid fa-print"></i>
+                                        Print
 
-📷 Elite Studio approved
+                                    </button>
 
-</li>
 
-<li class="list-group-item">
+                                    <button
+                                            class="btn btn-success"
+                                            onclick="downloadRevenueReport()">
 
-💳 Payment received (Rs.35,000)
+                                        <i class="fa-solid fa-download"></i>
 
-</li>
+                                        Download
 
-<li class="list-group-item">
+                                    </button>
 
-⭐ New 5-star review added
+                                </div>
 
-</li>
+                            </div>
 
-</ul>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
+                    <!-- Customer Report -->
 
-</section>
+                    <div class="col-md-4">
+
+                        <div class="card border-primary shadow-sm h-100">
+
+                            <div class="card-body text-center">
+
+                                <i class="fa-solid fa-users fa-3x text-primary mb-3"></i>
+
+                                <h5>Customer Report</h5>
+
+                                <p class="text-muted">
+                                    Registered customer statistics.
+                                </p>
+
+                                <div class="d-flex justify-content-center gap-2">
+
+                                    <button
+                                            class="btn btn-outline-primary"
+                                            onclick="viewCustomerReport()">
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                        View
+
+                                    </button>
+
+                                    <button class="btn btn-outline-dark"
+                                            onclick="printCustomerReport()">
+
+                                        <i class="fa-solid fa-print"></i>
+                                        Print
+
+                                    </button>
+
+
+                                    <button
+                                            class="btn btn-primary"
+                                            onclick="downloadCustomerReport()">
+
+                                        <i class="fa-solid fa-download"></i>
+
+                                        Download
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= RECENT ACTIVITY ================= -->
+
+    <section id="activities" class="dashboard-section mt-5">
+
+        <div class="card shadow border-0">
+
+            <div class="card-header bg-dark">
+
+                <h3 class="mb-0 text-white">
+
+                    <i class="fa-solid fa-clock-rotate-left text-warning me-2"></i>
+
+                    Recent Activities
+
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush"
+                    id="recentActivities">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
 

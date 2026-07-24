@@ -8,4 +8,6 @@ public interface NotificationRepository
 
     List<Notification> findByUserIdOrderByCreatedAtDesc(Long userId);
 
+    List<Notification> findTop10ByOrderByCreatedAtDesc();
+
 }

@@ -10,4 +10,6 @@ public interface NotificationService {
 
     Notification markAsRead(Long id);
 
+    List<Notification> getRecentActivities();
+
 }

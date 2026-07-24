@@ -1838,3 +1838,64 @@ footer{
     padding:25px;
     margin-top:70px;
 }
+#bookingsBody td:last-child{
+    white-space: nowrap;
+}
+
+#bookingsBody .btn{
+    margin-right:5px;
+}
+
+.dashboard-section{
+
+    display:none;
+
+}
+
+.menu-link{
+
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    transition:.3s;
+
+}
+
+.menu-link:hover{
+
+    background:#ffc107;
+    color:#222;
+
+}
+
+.menu-link.active{
+
+    background:#ffc107;
+    color:#222;
+    font-weight:bold;
+
+}
+
+.card-header h3{
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+}
+
+.card-header i{
+    color: #ffc107;
+}
+
+.admin-sidebar{
+
+    background:#111;
+
+    color:#fff;
+
+    min-height:100vh;
+
+    padding-top:20px;
+
+    box-shadow:3px 0 12px rgba(0,0,0,.2);
+
+}

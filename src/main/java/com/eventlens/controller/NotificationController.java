@@ -28,4 +28,11 @@ public class NotificationController {
 
     }
 
+    @GetMapping("/recent")
+    public List<Notification> getRecentActivities() {
+
+        return notificationService.getRecentActivities();
+
+    }
+
 }

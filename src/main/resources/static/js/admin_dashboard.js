@@ -160,22 +160,52 @@ function loadBookings(){
 
                     <td>${b.eventDate}</td>
 
-                    <td>${b.status}</td>
-
                     <td>
-    <button class="btn btn-success btn-sm" onclick="confirmBooking(${b.id})">
-        Accept
-    </button>
-
-    <button class="btn btn-danger btn-sm" onclick="rejectBooking(${b.id})">
-        Reject
-    </button>
-
-    <button class="btn btn-primary btn-sm" onclick="completeBooking(${b.id})">
-        Complete
-    </button>
+    <span class="badge ${
+                    b.status === "COMPLETED"
+                        ? "bg-primary"
+                        : b.status === "CONFIRMED"
+                            ? "bg-success"
+                            : b.status === "CANCELLED"
+                                ? "bg-danger"
+                                : b.status === "PENDING"
+                                    ? "bg-warning"
+                                : "bg-warning text-dark"
+                }">
+        ${b.status}
+    </span>
 </td>
 
+<td>
+    ${
+                    b.status === "COMPLETED"
+                        ? `<span class="badge bg-primary p-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Completed
+               </span>`
+                        : b.status === "CANCELLED"
+                            ? `<span class="badge bg-danger p-2">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    Cancelled
+               </span>`
+                            : `
+                <button class="btn btn-success btn-sm"
+                    onclick="confirmBooking(${b.id})">
+                    Accept
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    onclick="rejectBooking(${b.id})">
+                    Reject
+                </button>
+
+                <button class="btn btn-primary btn-sm"
+                    onclick="completeBooking(${b.id})">
+                    Complete
+                </button>
+              `
+                }
+</td>
                 </tr>
 
                 `;
@@ -337,44 +367,47 @@ function loadDashboard(){
 function loadPackages(){
 
     fetch("http://localhost:8080/api/packages")
-        .then(res=>res.json())
-        .then(packages=>{
+        .then(res => res.json())
+        .then(packages => {
 
-            console.log(packages);
+            let body = document.getElementById("packagesBody");
 
-            let body=document.getElementById("packagesBody");
+            body.innerHTML = "";
 
-            body.innerHTML="";
+            packages.forEach(pkg => {
 
-            packages.forEach(pkg=>{
+                body.innerHTML += `
+                <tr>
 
-                body.innerHTML+=`
-            <tr>
+                    <td>${pkg.id}</td>
 
-                <td>${pkg.id}</td>
-
-                <td>${pkg.name}</td>
-
-                <td>${pkg.price}</td>
-
-                <td>${pkg.hours} Hours</td>
-
-                <td>
                     <td>
-    <button class="btn btn-success btn-sm"
-        onclick="editPackage(${pkg.id})">
-        Edit
-    </button>
+                       ${pkg.name}
+                    </td>
 
-    <button class="btn btn-danger btn-sm"
-        onclick="deletePackage(${pkg.id})">
-        Delete
-    </button>
-</td>
-                </td>
+                    <td>
+                        Rs. ${Number(pkg.price).toLocaleString()}
+                    </td>
 
-            </tr>
-            `;
+                    <td>
+                            ${pkg.hours} Hours
+                    </td>
+
+                    <td class="text-center">
+
+                        <button class="btn btn-success btn-sm"
+                            onclick="editPackage(${pkg.id})">
+                                     Edit
+                            </button>
+                        <button class="btn btn-danger btn-sm"
+                            onclick="deletePackage(${pkg.id})">               
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+                `;
 
             });
 
@@ -399,6 +432,10 @@ window.onload=function(){
     loadReviews();
 
     loadDashboardSummary();
+
+    loadRecentActivities();
+
+    showSection("dashboard", document.querySelector(".menu-link"));
 
 
 }
@@ -1015,5 +1052,158 @@ function viewPayment(id){
             ).show();
 
         });
+
+}
+
+function downloadBookingReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/bookings",
+        "_blank"
+    );
+
+}
+
+function downloadRevenueReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/revenue",
+        "_blank"
+    );
+
+}
+
+function downloadCustomerReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/customers",
+        "_blank"
+    );
+
+}
+
+function loadRecentActivities(){
+
+    fetch("http://localhost:8080/api/notifications/recent")
+        .then(res=>res.json())
+        .then(data=>{
+
+            let list=document.getElementById("recentActivities");
+
+            list.innerHTML="";
+
+            data.forEach(a=>{
+
+                list.innerHTML += `
+
+<li class="list-group-item">
+
+<b>${a.title}</b>
+
+<br>
+
+${a.message}
+
+<br>
+
+<small class="text-muted">
+
+${a.createdAt}
+
+</small>
+
+</li>
+
+`;
+
+            });
+
+        });
+
+}
+
+function showSection(sectionId, element){
+
+    document.querySelectorAll(".dashboard-section")
+        .forEach(section => section.style.display = "none");
+
+    document.getElementById(sectionId).style.display = "block";
+
+    document.querySelectorAll(".menu-link")
+        .forEach(link => link.classList.remove("active"));
+
+    element.classList.add("active");
+}
+
+showSection("dashboard");
+
+function viewBookingReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/bookings/view",
+        "_blank"
+    );
+
+}
+
+function viewRevenueReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/revenue/view",
+        "_blank"
+    );
+
+}
+
+function viewCustomerReport(){
+
+    window.open(
+        "http://localhost:8080/api/reports/customers/view",
+        "_blank"
+    );
+
+}
+
+function printBookingReport(){
+
+    let win = window.open(
+        "http://localhost:8080/api/reports/bookings/view",
+        "_blank"
+    );
+
+    win.onload = function(){
+
+        win.print();
+
+    };
+
+}
+function printRevenueReport(){
+
+    let win = window.open(
+        "http://localhost:8080/api/reports/revenue/view",
+        "_blank"
+    );
+
+    win.onload = function(){
+
+        win.print();
+
+    };
+
+}
+
+function printCustomerReport(){
+
+    let win = window.open(
+        "http://localhost:8080/api/reports/customers/view",
+        "_blank"
+    );
+
+    win.onload=function(){
+
+        win.print();
+
+    };
 
 }
